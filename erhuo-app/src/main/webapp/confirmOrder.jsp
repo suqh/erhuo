@@ -18,7 +18,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="Wedding Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
-    <script src="/js/common/simpleCart.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -82,6 +81,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 </div>
-<script type="text/javascript" src="/js/shoppingCart.js"></script>
+<script type="text/javascript" src="/js/confirmOrder.js"></script>
 </body>
 </html>
