@@ -61,6 +61,9 @@ $(document).ready(function () {
                 $("#tf").submit();
             }
         })
+        $("#cancelBtn").click(function () {
+            location.href="/saleList/showSaleList"
+        })
     };
 
     var init = function () {

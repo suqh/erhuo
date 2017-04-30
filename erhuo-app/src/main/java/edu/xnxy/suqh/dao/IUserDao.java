@@ -10,4 +10,9 @@ import edu.xnxy.suqh.entity.UserInfo;
  */
 public interface IUserDao extends BaseDao<UserInfo> {
 
+    /**
+     * 根据用户id查询用户信息
+     */
+    public UserInfo queryUserInfoById(Integer userId);
+
 }

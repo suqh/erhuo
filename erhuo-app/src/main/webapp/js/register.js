@@ -79,7 +79,9 @@ $(document).ready(function () {
                 });
             }
         })
-        $("")
+        $("#backBtn").bind("click",function () {
+            location.href="/registerAndLogin/loginPage"
+        })
         ;
     };
 

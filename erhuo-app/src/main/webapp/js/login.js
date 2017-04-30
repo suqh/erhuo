@@ -31,6 +31,17 @@ $(document).ready(function () {
         return true;
     };
 
+    /**
+     * 忘记密码通过输入的用户名来修改
+     */
+    var validate1 = function () {
+        if(userInfo.userName == ""  || userInfo.userName ==null) {
+            alert("用户名不能为空");
+            return false;
+        }
+        return true;
+    };
+
     var initEvent = function () {
 
         $("#loginBtn").bind("click",function () {
@@ -50,6 +61,15 @@ $(document).ready(function () {
                 });
             }
         });
+
+        $("#forget_btn").bind("click",function () {
+            getData();
+            if(userInfo.userName == ""  || userInfo.userName ==null) {
+                alert("用户名不能为空");
+            }else{
+                location.href="/forgetPassword/viewEmailPage?userName="+userInfo.userName;
+            }
+        });
     };
 
     var init = function () {
@@ -58,3 +78,4 @@ $(document).ready(function () {
 
     init();
 });
+

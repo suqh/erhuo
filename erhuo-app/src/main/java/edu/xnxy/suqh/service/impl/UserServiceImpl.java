@@ -111,4 +111,15 @@ public class UserServiceImpl implements IUserService {
         }
         return userInfo;
     }
+
+    /**
+     * 根据用户id查询用户信息
+     *
+     * @param userId
+     */
+    @Override
+    public UserInfo queryUserInfoById(Integer userId) {
+        UserInfo userInfo = userDao.queryUserInfoById(userId);
+        return userInfo;
+    }
 }

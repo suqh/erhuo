@@ -66,6 +66,7 @@
                 </div>
             </div>
             </c:forEach>
+            <input type="button" value="返回首页" class="btn btn-info" id="backBtn" onclick="back()">
         </div>
         <div class="clearfix"> </div>
     </div>

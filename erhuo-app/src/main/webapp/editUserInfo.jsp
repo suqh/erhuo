@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>注册界面</title>
-    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="/js/common/jquery.min.js"></script>
     <script src="/js/common/bootstrap.min.js"></script>
@@ -61,8 +61,9 @@
                     <input class="form-control required" type="text" name="userName" placeholder="请输入姓名" autofocus="autofocus"
                            value="${sessionScope.userInfo.userName}" disabled="disabled" id="userName"/>
                 </div>
-                <div class="form-group">
+                <div class="form-group" >
                     <div class="checkbox" id="userGender">
+                        <label for="userGender" class="">性别 :</label>
                         <c:if test="${sessionScope.userInfo.userGender  == 0}">
                             <label><input type="radio" name="userGender" value="0" checked="checked">男 </label>
                             <label><input type="radio" name="userGender" value="1">女 </label>
@@ -73,6 +74,15 @@
                         </c:if>
                     </div>
                 </div>
+                <c:if test="${sessionScope.userInfo.isManager  == 1}">
+                <div class="form-group" >
+                    <div class="checkbox" id="isManager">
+                        <label for="isManager" class="">管理员 :</label>
+                            <label><input type="radio" name="isManager" value="0" disabled="disabled">否 </label>
+                            <label><input type="radio" name="isManager" value="1" checked="checked" disabled="disabled">是</label>
+                    </div>
+                </div>
+                </c:if>
                 <div class="form-group">
                     <i class="fa fa-check fa-lg"></i>
                     <input class="form-control required" type="text" placeholder="请输入年龄" name="userAge"

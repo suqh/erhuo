@@ -37,4 +37,9 @@ public interface IUserService {
     * 根据姓名查询用户
     * */
     public UserInfo queryUserByName(UserInfo userInfo) throws Exception;
+
+    /**
+     * 根据用户id查询用户信息
+     */
+    public UserInfo queryUserInfoById(Integer userId);
 }

@@ -88,9 +88,12 @@
             <input class="form-control" placeholder="手机号码" name="phoneNum" id="phoneNum"/>
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <input type="button" class="btn btn-primary btn-lg col-md-3" value="马上发布 " id="publishBtn"/>
+    <div class="form-group  inline">
+        <div class="col-sm-offset-2 col-sm-2">
+            <input type="button" class="btn btn-success" value="马上发布 " id="publishBtn"/>
+        </div>
+        <div class="col-sm-2">
+            <input type="button" class="btn btn-info" value="取消发布 " id="cancelBtn"/>
         </div>
     </div>
 </form>
