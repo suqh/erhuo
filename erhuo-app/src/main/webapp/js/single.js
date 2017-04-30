@@ -57,6 +57,10 @@ $(document).ready(function () {
                });
            }
        })
+
+       $("#continueBtn").click(function () {
+           location.href = "/saleList/showSaleList"
+       })
    }
 
    var init = function () {

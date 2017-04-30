@@ -4,7 +4,6 @@ import edu.xnxy.suqh.entity.GoodsInfo;
 import edu.xnxy.suqh.entity.ShoppingCartInfo;
 import edu.xnxy.suqh.entity.UserInfo;
 import edu.xnxy.suqh.service.IGoodsService;
-import edu.xnxy.suqh.service.IReceiverAddressService;
 import edu.xnxy.suqh.service.IShoppingCartService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -37,8 +36,6 @@ public class ShoppingCartController {
     @Resource
     private IGoodsService goodsService;
 
-    @Resource
-    private IReceiverAddressService receiverAddressService;
 
     @RequestMapping("/shoppingCartPage")
     public String showShoppingCar(HttpServletRequest request, String userId) {

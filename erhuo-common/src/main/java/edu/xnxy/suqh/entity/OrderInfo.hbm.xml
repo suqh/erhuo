@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="edu.xnxy.suqh.entity.OrderInfo" table="order_info">
+        <id name="orderId" type="java.lang.Integer">
+            <column name="order_id"/>
+            <generator class="identity" />
+        </id>
+        <property name="orderGoodsId" type="java.lang.Integer">
+            <column name="order_goods_id" length="20" not-null="true" />
+        </property>
+        <property name="orderUserId" type="java.lang.Integer">
+            <column name="order_user_id" length="20" not-null="true" />
+        </property>
+        <property name="orderGoodsName" type="java.lang.String">
+            <column name="order_goods_name" length="20" not-null="true" />
+        </property>
+        <property name="orderGoodsNum" type="java.lang.Integer">
+            <column name="order_goods_num" length="20" not-null="true" />
+        </property>
+        <property name="orderTotalPrice" type="java.lang.Integer">
+            <column name="order_total_price" length="20" not-null="true" />
+        </property>
+        <property name="orderReceiveName" type="java.lang.String">
+            <column name="order_receive_name" length="20" not-null="true" />
+        </property>
+        <property name="orderReceiveAddress" type="java.lang.String">
+            <column name="order_receive_address" length="128" not-null="true" />
+        </property>
+        <property name="orderReceivePhone" type="java.lang.String">
+            <column name="order_receive_phone" length="20" not-null="true" />
+        </property>
+        <property name="orderDate" type="java.util.Date">
+            <column name="order_date" not-null="true" />
+        </property>
+        <property name="ext1" type="java.lang.Integer">
+            <column name="ext1" length="7" not-null="false" />
+        </property>
+        <property name="ext2" type="java.lang.String">
+            <column name="ext2" length="20" not-null="false" />
+        </property>
+        <property name="ext3" type="java.lang.String">
+            <column name="ext3" length="20" not-null="false" />
+        </property>
+    </class>
+</hibernate-mapping>

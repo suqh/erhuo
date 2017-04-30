@@ -86,13 +86,15 @@
                                    class="add-cart item_add">修改商品信息</a>
                             </c:when>
                             <c:when test="${sessionScope.userInfo.isManager == 1}">
-                                <a href="/saleList/showSaleList" class="add-cart item_add">继续浏览</a>
-                                <input type="button" class="btn btn-info" value="加入购物车" id="addCartBtn"/>
+                                <%--<a href="/saleList/showSaleList" class="add-cart item_add">继续浏览</a>--%>
+                                <input type="button" class="btn btn-info" value="继续浏览" id="continueBtn">&nbsp;
+                                <input type="button" class="btn btn-info" value="加入购物车" id="addCartBtn"/>&nbsp;
                                 <input type="button" class="btn btn-info" value="删除该商品" id="deleteBtn"/>
                             </c:when>
                             <c:otherwise>
-                                <a href="/saleList/showSaleList" class="add-cart item_add">继续浏览</a>
-                                <input type="button" class="btn btn-primary" value="加入购物车" id="addCartBtn"/>
+                                <%--<a href="/saleList/showSaleList" class="add-cart item_add">继续浏览</a>--%>
+                                <input type="button" class="btn btn-info" value="继续浏览" id="continueBtn">&nbsp;&nbsp;
+                                <input type="button" class="btn btn-info" value="加入购物车" id="addCartBtn"/>
                             </c:otherwise>
                         </c:choose>
                         <input type="hidden" name="shoppingCartName" value="${requestScope.goodsInfo.goodsName}"
