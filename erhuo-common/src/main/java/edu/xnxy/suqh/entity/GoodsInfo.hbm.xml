@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="edu.xnxy.suqh.entity.GoodsInfo" table="goods_info">
+        <id name="goodsId" type="java.lang.Integer">
+            <column name="goods_id"/>
+            <generator class="identity" />
+        </id>
+        <property name="fileName" type="java.lang.String">
+            <column name="file_name" length="64" not-null="true" />
+        </property>
+        <property name="filePath" type="java.lang.String">
+            <column name="file_path" length="64" not-null="true" />
+        </property>
+        <property name="goodsName" type="java.lang.String">
+            <column name="goods_name" length="20" not-null="true" />
+        </property>
+        <property name="goodsDesc" type="java.lang.String">
+            <column name="goods_desc" length="64" not-null="true" />
+        </property>
+        <property name="tradLocation" type="java.lang.String">
+            <column name="trad_location" length="64" not-null="true" />
+        </property>
+        <property name="goodsPrice" type="java.lang.Integer">
+            <column name="goods_price" length="10" not-null="true" />
+        </property>
+        <property name="goodsType" type="java.lang.String">
+            <column name="goods_type" length="20" not-null="true" />
+        </property>
+        <property name="phoneNum" type="java.lang.String">
+            <column name="phone_num" length="15" not-null="true" />
+        </property>
+        <property name="goodsNum" type="java.lang.Integer">
+            <column name="goods_num" length="20" not-null="true" />
+        </property>
+        <property name="ext1" type="java.lang.Integer">
+            <column name="ext1" length="7" not-null="false" />
+        </property>
+        <property name="ext2" type="java.lang.String">
+            <column name="ext2" length="20" not-null="false" />
+        </property>
+        <property name="ext3" type="java.lang.String">
+            <column name="ext3" length="20" not-null="false" />
+        </property>
+        <property name="userId" type="java.lang.Integer">
+            <column name="user_id" length="20" not-null="false" />
+        </property>
+    </class>
+</hibernate-mapping>

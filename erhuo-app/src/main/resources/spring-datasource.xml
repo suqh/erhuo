@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context.xsd
+ http://www.springframework.org/schema/tx
+ http://www.springframework.org/schema/tx/spring-tx.xsd
+ http://www.springframework.org/schema/aop
+ http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--引入外部文件-->
+    <context:property-placeholder location="classpath:c3p0.properties"/>
+
+    <!--配置d3p0的连接池-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass">
+            <value>${c3p0.driverClass}</value>
+        </property>
+        <property name="jdbcUrl">
+            <value>${c3p0.jdbcUrl}</value>
+        </property>
+        <property name="user">
+            <value>${c3p0.username}</value>
+        </property>
+        <property name="password">
+            <value>${c3p0.password}</value>
+        </property>
+        <property name="initialPoolSize">
+            <value>${c3p0.initialPoolSize}</value>
+        </property>
+        <property name="acquireIncrement">
+            <value>${c3p0.acquireIncrement}</value>
+        </property>
+        <property name="maxPoolSize">
+            <value>${c3p0.maxPoolSize}</value>
+        </property>
+        <property name="minPoolSize">
+            <value>${c3p0.minPoolSize}</value>
+        </property>
+    </bean>
+
+    <!--sessionFactory配置-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <!--hibernate集成-->
+        <property name="hibernateProperties">
+            <props>
+                <!--数据库方言-->
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.current_session_context_class">
+                    org.springframework.orm.hibernate3.SpringSessionContext
+                </prop>
+
+                <!-- 连接池hibernate配置 需要再次置数据源,c3p0才起作用
+                 否则提示报错 The user must supply a JDBC connection
+                 -->
+                <prop key="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</prop>
+                <prop key="hibernate.connection.driver_class">${c3p0.driverClass}</prop>
+                <prop key="hibernate.connection.url">${c3p0.jdbcUrl}</prop>
+                <prop key="hibernate.connection.username">${c3p0.username}</prop>
+                <prop key="hibernate.connection.password">${c3p0.password}</prop>
+                <prop key="hibernate.c3p0.acquire_increment">${c3p0.acquireIncrement}</prop>
+                <prop key="hibernate.c3p0.min_size">${c3p0.minPoolSize}</prop>
+                <prop key="hibernate.c3p0.max_size">${c3p0.maxPoolSize}</prop>
+            </props>
+        </property>
+
+        <property name="mappingLocations">
+            <value>classpath*:edu/xnxy/suqh/entity/*.hbm.xml</value>
+        </property>
+    </bean>
+
+    <!--配置事务管理-->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!--配置事务通知-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!--设置事务规则-->
+        <tx:attributes>
+            <tx:method name="tran*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="get*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="find*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="save*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="insert*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="update*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="delete*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+        </tx:attributes>
+    </tx:advice>
+    <!--配置AOP-->
+    <aop:config>
+        <!--配置切入点，表示切入点为类下的所有方法-->
+        <aop:pointcut id="pointcut" expression="execution(* edu.xnxy.suqh.service.impl.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
+    </aop:config>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

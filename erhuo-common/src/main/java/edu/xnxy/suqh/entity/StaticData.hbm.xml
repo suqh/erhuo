@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="edu.xnxy.suqh.entity.StaticData" table="static_data">
+        <id name="codeId" type="java.lang.Integer">
+            <column name="code_id"/>
+        </id>
+        <property name="codeType" type="java.lang.Integer">
+            <column name="code_type" length="20" not-null="true" />
+        </property>
+        <property name="codeName" type="java.lang.String">
+            <column name="code_name" length="64" not-null="true" />
+        </property>
+        <property name="notes" type="java.lang.String">
+            <column name="notes" length="64" not-null="false" />
+        </property>
+        <property name="ext1" type="java.lang.Integer">
+            <column name="ext1" length="5" not-null="false" />
+        </property>
+        <property name="ext2" type="java.lang.String">
+            <column name="ext2" length="20" not-null="false" />
+        </property>
+        <property name="ext3" type="java.lang.String">
+            <column name="ext3" length="20" not-null="false" />
+        </property>
+    </class>
+</hibernate-mapping>
