@@ -42,6 +42,15 @@
         <property name="userPoint" type="java.lang.Integer">
             <column name="user_point" length="4" not-null="false" />
         </property>
+        <property name="isManager" type="java.lang.Integer">
+            <column name="isManager" length="1" not-null="false" />
+        </property>
+        <property name="outDate" type="java.lang.Long">
+            <column name="outDate" length="20" not-null="false" />
+        </property>
+        <property name="validataCode" type="java.lang.String">
+            <column name="validataCode" length="64" not-null="false" />
+        </property>
         <property name="ext1" type="java.lang.Integer">
             <column name="ext1" length="7" not-null="false" />
         </property>

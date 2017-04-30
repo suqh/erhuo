@@ -18,10 +18,25 @@
     <!--font-awesome 核心我CSS 文件-->
     <link href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <style type="text/css">
-        .form{background: rgba(255,255,255,0.2);width:400px;margin:100px auto;}
-        .fa{display: inline-block;top: 27px;left: 6px;position: relative;color: #ccc;}
-        input[type="text"],input[type="password"]{padding-left:26px;}
-       /* .checkbox{padding-left:21px;}*/
+        .form {
+            background: rgba(255, 255, 255, 0.2);
+            width: 400px;
+            margin: 100px auto;
+        }
+
+        .fa {
+            display: inline-block;
+            top: 27px;
+            left: 6px;
+            position: relative;
+            color: #ccc;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding-left: 26px;
+        }
+
+        /* .checkbox{padding-left:21px;}*/
     </style>
 </head>
 <body>
@@ -32,22 +47,25 @@
             <div class="col-sm-9 col-md-9">
                 <div class="form-group">
                     <i class="fa fa-user fa-lg"></i>
-                    <input class="form-control required" type="text" placeholder="姓名" id="userName" name="userName" autofocus="autofocus" maxlength="20"/>
+                    <input class="form-control required" type="text" placeholder="姓名" id="userName" name="userName"
+                           autofocus="autofocus" maxlength="20"/>
                 </div>
                 <div class="form-group">
                     <i class="fa fa-lock fa-lg"></i>
-                    <input class="form-control required" type="password" placeholder="密码" name="userPassword" id="userPassword"/>
+                    <input class="form-control required" type="password" placeholder="密码" name="userPassword"
+                           id="userPassword"/>
                 </div>
                 <div class="form-group">
-                    <input type="button" class="btn btn-primary btn-block" value="登录 " id="loginBtn"/>
+                    <input type="button" class="btn btn-info btn-block" value="登录 " id="loginBtn"/>
                 </div>
-                <div class="form-group">
-                    <a href="/registerAndLogin/registerPage" id="register_btn" class="">还没有账号，马上去注册一个吧...</a>
+                <div class="form-group inline">
+                        <a href="/registerAndLogin/registerPage" id="register_btn">注册账号</a>
+                        <a href="javascript:" id="forget_btn" class="" style="margin-left: 100px">忘记密码</a>
                 </div>
             </div>
         </form>
     </div>
 </div>
-<script type="text/javascript" src="/js/login.js" ></script>
+<script type="text/javascript" src="/js/login.js"></script>
 </body>
 </html>

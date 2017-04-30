@@ -63,7 +63,6 @@ $(document).ready(function () {
             }
         });
         $("#backBtn").bind("click",function () {
-           /* location.href="/registerAndLogin/indexPage"*/
             location.href="/saleList/showSaleList?userId="+$("#userId").val()
         })
     };

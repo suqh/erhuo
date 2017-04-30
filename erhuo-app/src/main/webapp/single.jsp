@@ -85,23 +85,28 @@
                                 <a href="/modify/modifyGoodsInfo?goodsId=${requestScope.goodsInfo.goodsId}"
                                    class="add-cart item_add">修改商品信息</a>
                             </c:when>
+                            <c:when test="${sessionScope.userInfo.isManager == 1}">
+                                <a href="/saleList/showSaleList" class="add-cart item_add">继续浏览</a>
+                                <input type="button" class="btn btn-info" value="加入购物车" id="addCartBtn"/>
+                                <input type="button" class="btn btn-info" value="删除该商品" id="deleteBtn"/>
+                            </c:when>
                             <c:otherwise>
                                 <a href="/saleList/showSaleList" class="add-cart item_add">继续浏览</a>
                                 <input type="button" class="btn btn-primary" value="加入购物车" id="addCartBtn"/>
-                                <input type="hidden" name="shoppingCartName" value="${requestScope.goodsInfo.goodsName}"
-                                       id="shoppingCartName"/>
-                                <input type="hidden" name="fileName" value="${requestScope.goodsInfo.fileName}"
-                                       id="fileName"/>
-                                <input type="hidden" name="filePath" value="${requestScope.goodsInfo.filePath}"
-                                       id="filePath"/>
-                                <input type="hidden" name="maxGoodsNum" value="${requestScope.goodsInfo.goodsNum}"
-                                       id="maxGoodsNum"/>
-                                <input type="hidden" name="goodsId" value="${requestScope.goodsInfo.goodsId}"
-                                       id="goodsId"/>
-                                <input type="hidden" name="userId" value="${sessionScope.userInfo.userId}" id="userId"/>
-                                <input type="hidden" name="goodsPrice" value="${requestScope.goodsInfo.goodsPrice}" id="goodsPrice"/>
                             </c:otherwise>
                         </c:choose>
+                        <input type="hidden" name="shoppingCartName" value="${requestScope.goodsInfo.goodsName}"
+                               id="shoppingCartName"/>
+                        <input type="hidden" name="fileName" value="${requestScope.goodsInfo.fileName}"
+                               id="fileName"/>
+                        <input type="hidden" name="filePath" value="${requestScope.goodsInfo.filePath}"
+                               id="filePath"/>
+                        <input type="hidden" name="maxGoodsNum" value="${requestScope.goodsInfo.goodsNum}"
+                               id="maxGoodsNum"/>
+                        <input type="hidden" name="goodsId" value="${requestScope.goodsInfo.goodsId}"
+                               id="goodsId"/>
+                        <input type="hidden" name="userId" value="${sessionScope.userInfo.userId}" id="userId"/>
+                        <input type="hidden" name="goodsPrice" value="${requestScope.goodsInfo.goodsPrice}" id="goodsPrice"/>
                     </div>
                 </div>
                 <div class="clearfix"></div>

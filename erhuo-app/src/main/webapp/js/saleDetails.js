@@ -21,3 +21,7 @@ function removeGoods(goodsId){
         });
     }
 }
+
+function back() {
+    location.href="/saleList/showSaleList"
+}

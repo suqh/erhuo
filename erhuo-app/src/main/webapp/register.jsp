@@ -56,7 +56,8 @@
                     <input class="form-control required" type="password" placeholder="确认密码" id="confirmPassword" name="confirmPassword"/>
                 </div>
                 <div class="form-group">
-                    <div class="checkbox" id="userGender">
+                    <div class="checkbox" id="userGender" style="margin-left: auto">
+                        <label for="userGender" class="">性别 :</label>
                         <label><input type="radio" name="gender" value="0">男 </label>
                         <label><input type="radio" name="gender" value="1">女 </label>
                     </div>

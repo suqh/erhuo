@@ -79,4 +79,20 @@ public class UserDaoImpl implements IUserDao {
         userInfo = (UserInfo) criteria.uniqueResult();
         return userInfo;
     }
+
+    /**
+     * 根据用户id查询用户信息
+     *
+     * @param userId
+     */
+    @Override
+    public UserInfo queryUserInfoById(Integer userId) {
+        Session session = sessionFactory.getCurrentSession();
+        UserInfo userInfo = null;
+        String hql = "from UserInfo where userId = ?";
+        Query query = session.createQuery(hql);
+        query.setInteger(0,userId);
+        userInfo = (UserInfo) query.uniqueResult();
+        return userInfo;
+    }
 }

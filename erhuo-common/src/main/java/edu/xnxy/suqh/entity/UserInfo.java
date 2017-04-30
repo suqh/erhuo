@@ -69,6 +69,21 @@ public class UserInfo {
     * */
     private Integer userPoint;
 
+    /**
+     * 是否为管理员
+     */
+    private Integer isManager;
+
+    /**
+     * 失效时间
+     */
+    private Long outDate;
+
+    /**
+     * 密钥
+     */
+    private String validataCode;
+
     /*
     * 扩展字段ext1
     * */
@@ -148,22 +163,6 @@ public class UserInfo {
         this.userPhone = userPhone;
     }
 
-   /* public Integer getUserCollege() {
-        return userCollege;
-    }
-
-    public void setUserCollege(Integer userCollege) {
-        this.userCollege = userCollege;
-    }
-
-    public Integer getUserMajor() {
-        return userMajor;
-    }
-
-    public void setUserMajor(Integer userMajor) {
-        this.userMajor = userMajor;
-    }*/
-
     public Integer getUserStatus() {
         return userStatus;
     }
@@ -194,6 +193,30 @@ public class UserInfo {
 
     public void setUserPoint(Integer userPoint) {
         this.userPoint = userPoint;
+    }
+
+    public Integer getIsManager() {
+        return isManager;
+    }
+
+    public void setIsManager(Integer isManager) {
+        this.isManager = isManager;
+    }
+
+    public Long getOutDate() {
+        return outDate;
+    }
+
+    public void setOutDate(Long outDate) {
+        this.outDate = outDate;
+    }
+
+    public String getValidataCode() {
+        return validataCode;
+    }
+
+    public void setValidataCode(String validataCode) {
+        this.validataCode = validataCode;
     }
 
     public Integer getExt1() {
@@ -235,6 +258,9 @@ public class UserInfo {
                 ", userGradeid='" + userGradeid + '\'' +
                 ", userIsonline=" + userIsonline +
                 ", userPoint=" + userPoint +
+                ", isManager=" + isManager +
+                ", outDate=" + outDate +
+                ", validataCode='" + validataCode + '\'' +
                 ", ext1=" + ext1 +
                 ", ext2='" + ext2 + '\'' +
                 ", ext3='" + ext3 + '\'' +

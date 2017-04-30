@@ -65,8 +65,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <p>
                 <c:if test="${sessionScope.userInfo.userName != null}">
                     <a href="/registerAndLogin/editPage?userId=${sessionScope.userInfo.userId}"
-                       class="simpleCart_empty">您好，${sessionScope.userInfo.userName}</a>&nbsp;&nbsp;
-                    <a href="/loginOut/loginOut">退出</a>
+                       class="simpleCart_empty">您好，${sessionScope.userInfo.userName}</a>
                 </c:if>
                 <c:if test="${sessionScope.userInfo.userName == null}">
                     <a href="/login.jsp" class="simpleCart_empty">您好，请先登录</a>
@@ -83,9 +82,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div>
         <form class="form-inline" role="form" id="tf" action="/saleList/indexQueryGoods" method="post">
             <input type="hidden" name="userId" value="${sessionScope.userInfo.userId}"/>
-            <div class="form-group" style="margin-top: 18px;margin-left: 300px">
+            <div class="form-group">
                 <div class="col-sm-2 ">
-                    <input type="text" class="form-control" placeholder="请输入商品名称" name="goodsName"
+                    <input type="text" class="form-control" placeholder="请输入名字" name="goodsName"
                            value="${requestScope.goodsName}"/>
                 </div>
                 <div class="col-sm-2  col-sm-offset-6">
