@@ -37,24 +37,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="check-sec">
         <div class="col-md-3 cart-total">
             <a class="continue" href="/saleList/showSaleList">继续添加购物车</a>
-           <%-- <div class="price-details">
-                <h3>价格详情</h3>
-                <span>总共</span>
-                <span class="total1">6200.00</span>--%>
+            <%--            <div class="price-details">
+                            <h3>价格详情</h3>
+                            <span>总共</span>
+                            <span class="total1">6200.00</span>
 
-                <!-- <span>Discount</span>
-                 <span class="total1">10%(Festival Offer)</span>
-                 <span>Delivery Charges</span>
-                 <span class="total1">150.00</span>-->
-               <%-- <div class="clearfix"></div>
-            </div>--%>
-           <%-- <ul class="total_price">
-                <li class="last_price"><h4>TOTAL</h4></li>
-                <li class="last_price"><span>6150.00</span></li>
-            </ul>--%>
+                            <span>Discount</span>
+                             <span class="total1">10%(Festival Offer)</span>
+                             <span>Delivery Charges</span>
+                             <span class="total1">150.00</span>
+                            <div class="clearfix"></div>
+                        </div>--%>
+            <ul class="total_price">
+                <li class="last_price"><h4>总价￥</h4></li>
+                <li class="last_price"><span id="totalPrice">${requestScope.totalPrice}</span></li>
+            </ul>
             <div class="clearfix"></div>
             <div class="clearfix"></div>
-            <a class="order" href="#">马上下单</a>
+            <a class="order" href="/shoppingCart/confirmOrderPage?userId=${sessionScope.userInfo.userId}">马上下单</a>
         </div>
         <div class="col-md-9 cart-items">
             <h1>我的购物车</h1>
@@ -66,41 +66,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 });
             });
             </script>--%>
-            <form action="">
                 <c:forEach items="${shoppingCartInfoList}" var="shoppingCartInfo">
-                    <div class="cart-header">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="goodsId" name="goodsId" value="${shoppingCartInfo.goodsPrice}" checked="checked">
-                            </label>
-                        </div>
-                        <div class="close1"
-                             onclick="removeShoppingCart(${shoppingCartInfo.goodsId},${sessionScope.userInfo.userId})"></div>
-                        <input type="hidden" value="${shoppingCartInfo.goodsId}">
-                        <input type="hidden" id="userId" value="${sessionScope.userInfo.userId}">
-                        <div class="cart-sec simpleCart_shelfItem">
-                            <div class="cart-item cyc">
-                                <img src="/saleDetail/showImage?imgName=${shoppingCartInfo.fileName}"
-                                     class="img-responsive"
-                                     style="height: 200px;width: 200px"/>
-                            </div>
-                            <div class="cart-item-info">
-                                <h3>
-                                    <a href="/saleDetail/viewProductDetails?goodsId=${shoppingCartInfo.goodsId}">${shoppingCartInfo.shoppingCartName}</a>
-                                </h3><br><br>
-                                <ul class="qty">
-                                    <li>数量 : <input type="number" value="${shoppingCartInfo.shoppingCartNum}" min="1"
-                                                    max=""></li>
-                                </ul>
-                                <div class="delivery">
-                                    <p>价格 : ${shoppingCartInfo.goodsPrice}</p>
-                                        <%--<span>Delivered in 2-3 bussiness days</span>--%>
-                                    <div class="clearfix"></div>
+                        <div class="cart-header">
+                            <div class="close1"
+                                 onclick="removeShoppingCart(${shoppingCartInfo.goodsId},${sessionScope.userInfo.userId})"></div>
+                            <input type="hidden" value="${shoppingCartInfo.goodsId}">
+                            <div class="cart-sec simpleCart_shelfItem">
+                                <div class="cart-item cyc">
+                                    <img src="/saleDetail/showImage?imgName=${shoppingCartInfo.fileName}"
+                                         class="img-responsive"
+                                         style="height: 200px;width: 200px"/>
                                 </div>
+                                <div class="cart-item-info">
+                                    <h3>
+                                        <a href="/saleDetail/viewProductDetails?goodsId=${shoppingCartInfo.goodsId}">${shoppingCartInfo.shoppingCartName}</a>
+                                    </h3><br><br>
+                                    <ul class="qty">
+                                        <li>
+                                            <form action="/shoppingCart/editShoppingCart" id="orderOneForm">
+                                                          <input type="hidden" id="goodsId"  name="goodsId" value="${shoppingCartInfo.goodsId}">
+                                                          <input type="hidden" id="userId" name="userId" value="${sessionScope.userInfo.userId}">
+                                                数量 : <input type="number" id="number" name="number" value="${shoppingCartInfo.shoppingCartNum}" min="1"  max="${shoppingCartInfo.maxGoodsNum}" onchange="editShoppingCart()">
+                                            </form>
+                                        </li>
+                                    </ul>
+                                    <div class="delivery">
+                                        <p>价格 : ${shoppingCartInfo.goodsPrice}</p>
+                                           <%-- <span>Delivered in 2-3 bussiness days</span>--%>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
                             </div>
-                            <div class="clearfix"></div>
                         </div>
-                    </div>
+
                 </c:forEach>
                 <%--<input type="button" class="btn btn-info" value="结算" id="orderBtn" onclick="accounts()">--%>
             </form>

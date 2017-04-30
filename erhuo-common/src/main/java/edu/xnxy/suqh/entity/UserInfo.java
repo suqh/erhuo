@@ -41,7 +41,7 @@ public class UserInfo {
     /*
     * 用户地址
     * */
-    private String userAdderss;
+    private String userAddress;
 
     /*
     * 用户手机号码
@@ -147,12 +147,12 @@ public class UserInfo {
         this.userEmail = userEmail;
     }
 
-    public String getUserAdderss() {
-        return userAdderss;
+    public String getUserAddress() {
+        return userAddress;
     }
 
-    public void setUserAdderss(String userAdderss) {
-        this.userAdderss = userAdderss;
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
     }
 
     public Long getUserPhone() {
@@ -252,7 +252,7 @@ public class UserInfo {
                 ", userGender='" + userGender + '\'' +
                 ", userAge=" + userAge +
                 ", userEmail='" + userEmail + '\'' +
-                ", userAdderss='" + userAdderss + '\'' +
+                ", userAddress='" + userAddress + '\'' +
                 ", userPhone=" + userPhone +
                 ", userStatus=" + userStatus +
                 ", userGradeid='" + userGradeid + '\'' +

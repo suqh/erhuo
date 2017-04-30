@@ -23,33 +23,14 @@ function removeShoppingCart(goodsId, userId) {
     }
 }
 
-/*结算*/
-function isChecked() {
-    if ($("#goodsId").checked == true) {
-        var groupCheckbox = $("input[name='goodsId']");
-        for (i = 0; i < groupCheckbox.length; i++) {
-            if (groupCheckbox[i].checked) {
-                var goodsPrice = groupCheckbox[i].value;
-                alert(goodsPrice);
-            }
-        }
-    }
-    if ($("#goodsId").checked == false) {}
-    $.ajax({
-        url: "",
-        type: "post",
-        data: {
-            "goodsIds": $("#goodsId").val()
-        },
-        success: function (data) {
-
-        }
-    })
-}
-
 /**
- * 显示商品总价格
+ * 修改商品数量,重新计价格
  */
-function showTotalPrice(goodsId, price, number) {
-    var selectGoods = {};
+function editShoppingCart() {
+    if($("#number").val() > 0){
+        $("#orderOneForm").submit();
+    }else {
+        alert("商品数量不能小于0");
+    }
 }
+

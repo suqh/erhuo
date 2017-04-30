@@ -24,7 +24,7 @@
         <property name="userEmail" type="java.lang.String">
             <column name="user_email" length="20" not-null="false" />
         </property>
-        <property name="userAdderss" type="java.lang.String">
+        <property name="userAddress" type="java.lang.String">
             <column name="user_address" length="30" not-null="true" />
         </property>
         <property name="userPhone" type="java.lang.Long">
