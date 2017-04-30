@@ -37,6 +37,21 @@ public class ShoppingCartServiceImpl implements IShoppingCartService{
     }
 
     /**
+     * 根据用户id清理购物车信息
+     *
+     * @param userId 用户编号
+     * @return
+     */
+    @Override
+    public void deleteShoppingCartByUserId(Integer userId) throws SQLException {
+        try {
+            shoppingCartDao.deleteShoppingCartByUserId(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * 删除一条记录
      *
      * @param shoppingCartInfo

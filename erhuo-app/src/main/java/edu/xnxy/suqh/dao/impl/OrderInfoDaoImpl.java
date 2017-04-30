@@ -81,10 +81,26 @@ public class OrderInfoDaoImpl implements IOrderInfoDao{
     public List<OrderInfo> queryOrderInfoById(Integer userId) {
         Session session = sessionFactory.getCurrentSession();
         List<OrderInfo> orderInfoList = null;
-        String hql = "from OrderInfo where userId = ?";
+        String hql = "from OrderInfo where orderUserId = ?";
         Query query = session.createQuery(hql);
         query.setInteger(0,userId);
         orderInfoList = query.list();
         return orderInfoList;
+    }
+
+    /**
+     * 根据用户编号，和订单号删除订单
+     *
+     * @param userId
+     * @param orderId
+     */
+    @Override
+    public void deleteOrderInfo(Integer userId, Integer orderId) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "delete from OrderInfo where orderUserId = ? and orderId = ?";
+        Query query = session.createQuery(hql);
+        query.setInteger(0,userId);
+        query.setInteger(1,orderId);
+        query.executeUpdate();
     }
 }

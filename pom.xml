@@ -26,10 +26,15 @@
             <artifactId>hibernate-annotations</artifactId>
             <version>3.4.0.GA</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>org.hibernate.common</groupId>
             <artifactId>hibernate-commons-annotations</artifactId>
             <version>4.0.1.Final</version>
+        </dependency>-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-commons-annotations</artifactId>
+            <version>3.3.0.ga</version>
         </dependency>
 
         <dependency>

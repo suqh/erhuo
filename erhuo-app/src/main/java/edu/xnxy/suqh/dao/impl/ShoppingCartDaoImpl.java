@@ -108,4 +108,18 @@ public class ShoppingCartDaoImpl implements IShoppingCartDao {
         shoppingCartInfo = (ShoppingCartInfo) criteria.uniqueResult();
         return shoppingCartInfo;
     }
+
+    /**
+     * 根据用户编号清空购物车
+     *
+     * @param userId 用户编号
+     */
+    @Override
+    public void deleteShoppingCartByUserId(Integer userId) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "delete from ShoppingCartInfo where userId=?";
+        Query query = session.createQuery(hql);
+        query.setInteger(0,userId);
+        query.executeUpdate();
+    }
 }

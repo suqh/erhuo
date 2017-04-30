@@ -60,6 +60,11 @@ public class OrderInfo {
      */
     private Date orderDate;
 
+    /**
+     * 图片名称
+     */
+    private String imageName;
+
     /*
     * 扩展字段ext1
     * */
@@ -155,6 +160,14 @@ public class OrderInfo {
         this.orderDate = orderDate;
     }
 
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
     public Integer getExt1() {
         return ext1;
     }
@@ -192,6 +205,7 @@ public class OrderInfo {
                 ", orderReceiveAddress='" + orderReceiveAddress + '\'' +
                 ", orderReceivePhone='" + orderReceivePhone + '\'' +
                 ", orderDate=" + orderDate +
+                ", imageName='" + imageName + '\'' +
                 ", ext1=" + ext1 +
                 ", ext2='" + ext2 + '\'' +
                 ", ext3='" + ext3 + '\'' +

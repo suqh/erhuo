@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="erhuo-common:war">
+    <output-path>$PROJECT_DIR$/erhuo-common/target</output-path>
+    <root id="archive" name="erhuo-common-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="erhuo-common:war exploded" />
+    </root>
+  </artifact>
+</component>

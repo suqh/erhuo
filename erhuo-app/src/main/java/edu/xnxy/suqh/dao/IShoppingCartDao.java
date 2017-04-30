@@ -26,4 +26,9 @@ public interface IShoppingCartDao extends BaseDao<ShoppingCartInfo> {
      * @return
      */
     public ShoppingCartInfo queryShoppingCartInfoByGoodsIdAndUserId(Integer goodsId,Integer userId);
+
+    /**
+     * 根据用户编号清空购物车
+     */
+    public void deleteShoppingCartByUserId(Integer userId);
 }

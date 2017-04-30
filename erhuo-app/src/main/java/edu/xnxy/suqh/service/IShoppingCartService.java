@@ -22,6 +22,14 @@ public interface IShoppingCartService {
     public void addShoppingCart(ShoppingCartInfo shoppingCartInfo) throws SQLException;
 
     /**
+     * 根据用户id清理购物车信息
+     *
+     * @param userId 用户编号
+     * @return
+     */
+    public void deleteShoppingCartByUserId(Integer userId) throws SQLException;
+
+    /**
      * 删除一条记录
      *
      * @param shoppingCartInfo

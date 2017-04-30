@@ -24,10 +24,12 @@ public interface IOrderInfoService {
     /**
      * 删除一条记录
      *
-     * @param orderInfo
+     * @param userId 用户编号
+     * @param orderId 订单编号
      * @return
      */
-    public void deleteOrderInfo(OrderInfo orderInfo) throws SQLException;
+    public void deleteOrderInfo(Integer userId, Integer orderId) throws SQLException;
+
 
     /**
      * 修改一条记录

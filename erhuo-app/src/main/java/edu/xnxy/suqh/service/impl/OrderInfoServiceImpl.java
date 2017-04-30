@@ -43,17 +43,19 @@ public class OrderInfoServiceImpl implements IOrderInfoService{
     /**
      * 删除一条记录
      *
-     * @param orderInfo
+     * @param userId  用户编号
+     * @param orderId 订单编号
      * @return
      */
     @Override
-    public void deleteOrderInfo(OrderInfo orderInfo) throws SQLException {
+    public void deleteOrderInfo(Integer userId, Integer orderId) throws SQLException {
         try {
-            orderInfoDao.delete(orderInfo);
-        } catch (SQLException e) {
-            log.error("删除订购记录",e);
+            orderInfoDao.deleteOrderInfo(userId,orderId);
+        } catch (Exception e) {
+            log.error("更新订够记录",e);
         }
     }
+
 
     /**
      * 修改一条记录

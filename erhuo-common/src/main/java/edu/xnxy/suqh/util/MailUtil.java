@@ -1,7 +1,6 @@
 package edu.xnxy.suqh.util;
 
 import org.apache.log4j.Logger;
-import sun.security.provider.MD5;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

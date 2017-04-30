@@ -19,4 +19,11 @@ public interface IOrderInfoDao extends BaseDao<OrderInfo>{
      * @return
      */
     public List<OrderInfo> queryOrderInfoById(Integer userId);
+
+    /**
+     * 根据用户编号，和订单号删除订单
+     * @param userId
+     * @param orderId
+     */
+    public void deleteOrderInfo(Integer userId,Integer orderId);
 }
