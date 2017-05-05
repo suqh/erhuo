@@ -25,17 +25,24 @@ import java.util.Map;
  * description:
  *
  * @author suqh
- * Created by suqh on 2017/4/19.
+ *         Created by suqh on 2017/4/19.
  */
 @Controller
 @RequestMapping("/page")
 public class OtherController {
 
     private static final Logger log = Logger.getLogger(OtherController.class);
+
     @Resource
     private IGoodsService goodsService;
 
 
+    /**
+     * Description:跳转到发布商品页面
+     *
+     * @param httpServletRequest
+     * @return
+     */
     @RequestMapping("/salePage")
     public String salePage(HttpServletRequest httpServletRequest) {
         //获取session对象
@@ -48,11 +55,16 @@ public class OtherController {
         return "sale";
     }
 
-    /*
-    * 上传图片
-    * */
+    /**
+     * Description:商品发布，上传商品
+     *
+     * @param httpServletRequest
+     * @param goodsInfo          商品信息
+     * @return
+     * @throws IOException
+     */
     @RequestMapping("/sale.do")
-    public String upload(HttpServletRequest httpServletRequest, GoodsInfo goodsInfo) throws IOException {
+    public String uploadGoods(HttpServletRequest httpServletRequest, GoodsInfo goodsInfo) throws IOException {
         String fileName = "";
         String path = "";
         try {
@@ -66,8 +78,8 @@ public class OtherController {
                     //获取其中一个文件
                     MultipartFile multipartFile = multipartHttpServletRequest.getFile(iterator.next());
                     if (multipartFile != null) {
-                         fileName = "imageUpload" + multipartFile.getOriginalFilename();//定义文件名
-                         path = "C:\\Users\\QH\\Desktop\\" + fileName; //定义文件输出路径
+                        fileName = "imageUpload" + multipartFile.getOriginalFilename();//定义文件名
+                        path = "C:\\Users\\QH\\Desktop\\" + fileName; //定义文件输出路径
 
                         File localFile = new File(path);
                         multipartFile.transferTo(localFile); //将文件写到本地
@@ -78,9 +90,9 @@ public class OtherController {
             goodsInfo.setFileName(fileName);
             goodsInfo.setFilePath(path);
             goodsService.addGoods(goodsInfo);
-            httpServletRequest.setAttribute("goodsInfo",goodsInfo);
+            httpServletRequest.setAttribute("goodsInfo", goodsInfo);
         } catch (Exception e) {
-            log.error("上传商品失败",e);
+            log.error("上传商品失败", e);
         }
 
         //获取上传的商品列表
@@ -90,15 +102,11 @@ public class OtherController {
         Integer userId = userInfo.getUserId();
         try {
             goodsInfoList = goodsService.queryGoodsInfoByUserId(userId);
-            httpServletRequest.setAttribute("goodsInfoList",goodsInfoList);
+            httpServletRequest.setAttribute("goodsInfoList", goodsInfoList);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("获取用户发布的商品列表失败",e);
         }
 
         return "saleDetails";
-    }
-
-    public void showImage(){
-
     }
 }

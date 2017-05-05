@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * description:
+ * description:商品处理控制器
  *
  * @author suqh
  *         Created by suqh on 2017/4/24.
@@ -39,7 +39,9 @@ public class SaleDetailController {
     private static final Logger log = Logger.getLogger(RegisterAndLoginController.class);
 
     /**
-     * 商品列表
+     * Description:显示商品列表页面
+     *
+     * @return
      */
     @RequestMapping("/saleDetailList")
     public String saleDetail() {
@@ -47,17 +49,20 @@ public class SaleDetailController {
     }
 
     /**
-     * 刷新商品列表
+     * Description:显示商品列表
+     *
+     * @param httpServletRequest
+     * @return
      */
     @RequestMapping("/saleDetailList.do")
-    public String saleDetailList(HttpServletRequest httpServletRequest){
+    public String saleDetailList(HttpServletRequest httpServletRequest) {
         List<GoodsInfo> goodsInfoList = null;
         HttpSession session = httpServletRequest.getSession();
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
         Integer userId = userInfo.getUserId();
         try {
             goodsInfoList = goodsService.queryGoodsInfoByUserId(userId);
-            httpServletRequest.setAttribute("goodsInfoList",goodsInfoList);
+            httpServletRequest.setAttribute("goodsInfoList", goodsInfoList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,9 +71,10 @@ public class SaleDetailController {
 
 
     /**
-     * 显示图片
+     * Description:显示图片
+     *
      * @param response
-     * @param imgName
+     * @param imgName  图片名称
      */
     @RequestMapping("/showImage")
     public void showImage(HttpServletResponse response, String imgName) {
@@ -103,9 +109,13 @@ public class SaleDetailController {
         }
     }
 
-    /*
-     * 删除商品
-     * */
+    /**
+     * Description:删除商品信息
+     *
+     * @param httpServletRequest
+     * @param goodsInfo
+     * @return
+     */
     @RequestMapping("/deleteGoods")
     @ResponseBody
     public Map<String, Object> deleteGoodsInfo(HttpServletRequest httpServletRequest, GoodsInfo goodsInfo) {
@@ -123,7 +133,11 @@ public class SaleDetailController {
     }
 
     /**
-     * 查看商品详情
+     * Description:显示商品详情
+     *
+     * @param httpServletRequest
+     * @param goodsInfo
+     * @return
      */
     @RequestMapping("/viewProductDetails")
     public ModelAndView viewProductDetails(HttpServletRequest httpServletRequest, GoodsInfo goodsInfo) {
@@ -137,9 +151,9 @@ public class SaleDetailController {
         }
 
         goodsInfo = goodsService.queryGoodsInfoByGoodsId(Integer.valueOf(goodsInfo.getGoodsId()));
-        Map<String,Object> modelMap = new HashMap<String, Object>();
-        modelMap.put("goodsInfo",goodsInfo);
-        return new ModelAndView("single",modelMap);
+        Map<String, Object> modelMap = new HashMap<String, Object>();
+        modelMap.put("goodsInfo", goodsInfo);
+        return new ModelAndView("single", modelMap);
     }
 
 }

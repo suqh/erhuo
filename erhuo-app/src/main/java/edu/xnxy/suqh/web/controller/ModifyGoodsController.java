@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * description:
+ * Description: 修改山品信息控制器
  *
  * @author suqh
  *         Created by suqh on 2017/4/25.
@@ -23,29 +23,44 @@ import java.util.Map;
 public class ModifyGoodsController {
 
     private static final Logger log = Logger.getLogger(ModifyGoodsController.class);
+
     @Resource
     private IGoodsService goodsService;
 
+    /**
+     * Description:跳转到修改山品页面
+     *
+     * @param httpServletRequest
+     * @param goodsId            商品编号
+     * @return
+     */
     @RequestMapping("/modifyGoodsInfo")
-    public String modifyGoods(HttpServletRequest httpServletRequest,String goodsId){
-            GoodsInfo goodsInfo = goodsService.queryGoodsInfoByGoodsId(Integer.valueOf(goodsId));
-            httpServletRequest.setAttribute("goodsInfo",goodsInfo);
+    public String modifyGoods(HttpServletRequest httpServletRequest, String goodsId) {
+        GoodsInfo goodsInfo = goodsService.queryGoodsInfoByGoodsId(Integer.valueOf(goodsId));
+        httpServletRequest.setAttribute("goodsInfo", goodsInfo);
         return "modifyGoodsInfo";
     }
 
+    /**
+     * Description:修改商品信息
+     *
+     * @param httpServletRequest
+     * @param goodsInfo
+     * @return
+     */
     @RequestMapping("/modifyGoodsInfo.do")
     @ResponseBody
-    public Map<String,Object> modifyGoodsInfo(HttpServletRequest httpServletRequest,GoodsInfo goodsInfo) {
-        Map<String,Object> resultMap = new HashMap<String,Object>();
+    public Map<String, Object> modifyGoodsInfo(HttpServletRequest httpServletRequest, GoodsInfo goodsInfo) {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
         try {
             goodsService.updateGoods(goodsInfo);
-            resultMap.put("status",1);
-            resultMap.put("goodsId",goodsInfo.getGoodsId());
-            resultMap.put("message","修改商品信息成功");
+            resultMap.put("status", 1);
+            resultMap.put("goodsId", goodsInfo.getGoodsId());
+            resultMap.put("message", "修改商品信息成功");
         } catch (Exception e) {
-            resultMap.put("status",0);
-            resultMap.put("message","修改商品信息失败");
-            log.error("修改商品信息失败",e);
+            resultMap.put("status", 0);
+            resultMap.put("message", "修改商品信息失败");
+            log.error("修改商品信息失败", e);
         }
         return resultMap;
     }
