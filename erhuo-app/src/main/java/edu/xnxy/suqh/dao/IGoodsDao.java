@@ -27,6 +27,16 @@ public interface IGoodsDao extends BaseDao<GoodsInfo>{
     public GoodsInfo queryGoodsInfoByGoodsId(Integer goodsId);
 
     /**
+     * 获取指定数量的推荐商品，但是不查询用户自己发布的和当前查看的商品
+     * @param goodsType 查询商品类型
+     * @param goodsId 不查询的商品编号
+     * @param userId 不查询的用户编号（当前登录用户）
+     * @param count 查询数量
+     * @return
+     */
+    public List<GoodsInfo> queryRecommendGoodsInfo(String goodsType,Integer goodsId, Integer userId ,Integer count);
+
+    /**
      * 查询多条商品信息
      * @param
      * @return

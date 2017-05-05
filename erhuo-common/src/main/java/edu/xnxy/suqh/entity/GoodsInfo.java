@@ -1,5 +1,7 @@
 package edu.xnxy.suqh.entity;
 
+import java.util.Date;
+
 /**
  * description:
  *
@@ -62,6 +64,11 @@ public class GoodsInfo {
     * 用户ID
     * */
     private Integer userId;
+
+    /**
+     * 商品发布时间
+     */
+    private Date goodsDate;
 
     /*
    * 扩展字段ext1
@@ -166,6 +173,14 @@ public class GoodsInfo {
         this.userId = userId;
     }
 
+    public Date getGoodsDate() {
+        return goodsDate;
+    }
+
+    public void setGoodsDate(Date goodsDate) {
+        this.goodsDate = goodsDate;
+    }
+
     public Integer getExt1() {
         return ext1;
     }
@@ -202,8 +217,9 @@ public class GoodsInfo {
                 ", goodsPrice=" + goodsPrice +
                 ", goodsType='" + goodsType + '\'' +
                 ", phoneNum='" + phoneNum + '\'' +
-                ", goodsNum='" + goodsNum + '\'' +
+                ", goodsNum=" + goodsNum +
                 ", userId=" + userId +
+                ", goodsDate=" + goodsDate +
                 ", ext1=" + ext1 +
                 ", ext2='" + ext2 + '\'' +
                 ", ext3='" + ext3 + '\'' +

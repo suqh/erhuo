@@ -56,8 +56,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="active"><a href="/saleList/showSaleList">首页</a></li>
                 <li class="grid"><a href="/page/salePage">我要出售</a></li>
                 <li class="grid"><a href="/page/sale.do">发布的商品</a></li>
-                <li class="grid"><a href="/shoppingCart/shoppingCartPage?userId=${sessionScope.userInfo.userId}">购物车</a></li>
+                <li class="grid"><a href="/shoppingCart/shoppingCartPage?userId=${sessionScope.userInfo.userId}">购物车</a>
+                </li>
                 <li class="grid"><a href="/order/orderList?userId=${sessionScope.userInfo.userId}">购买记录</a></li>
+                <li class="grid"><a href="/question/testPage?userId=${sessionScope.userInfo.userId}">销售情况</a></li>
+                <li class="grid"><a href="/question/questionPage">常见问题</a></li>
             </ul>
         </div>
         <div class="cart box_1">
@@ -124,13 +127,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <input type="hidden" id="goodsName" value="${goodsInfo.goodsName}">
                     <input type="hidden" id="goodsType" value="${goodsInfo.goodsType}">
                     <input type="hidden" id="goodsPrice" value="${goodsInfo.goodsPrice}">
+
                     <div class="col-md-3 feature-grid">
-                        <a href="/saleDetail/viewProductDetails?goodsId=${goodsInfo.goodsId}"><img
+                        <a href="/saleDetail/viewProductDetails?goodsId=${goodsInfo.goodsId}&goodsType=${goodsInfo.goodsType}"><img
                                 src="/saleDetail/showImage?imgName=${goodsInfo.fileName}" alt=""
                                 style="width: 245px;height: 200px"/>
                             <div class="arrival-info">
                                 <h4>${goodsInfo.goodsName}</h4>
-                                <p>￥ ${goodsInfo.goodsPrice}</p>
+                                <div><span>￥ ${goodsInfo.goodsPrice}</span>
+                                    <c:if test="${goodsInfo.goodsNum ==0}">
+                                      <span style="margin-left: 95px;color: red;font-family: '微软雅黑'">无货</span>
+                                    </c:if>
+                                </div>
                             </div>
                             <div class="viw">
                                 <a href="/saleDetail/viewProductDetails?goodsId=${goodsInfo.goodsId}"><span

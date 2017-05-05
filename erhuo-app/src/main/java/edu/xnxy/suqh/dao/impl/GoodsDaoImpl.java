@@ -3,6 +3,7 @@ package edu.xnxy.suqh.dao.impl;
 import edu.xnxy.suqh.dao.IGoodsDao;
 import edu.xnxy.suqh.entity.GoodsInfo;
 import org.hibernate.*;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -85,6 +86,7 @@ public class GoodsDaoImpl implements IGoodsDao {
 
     /**
      * 根据userId查询商品信息
+     *
      * @param userId
      * @return
      */
@@ -93,14 +95,16 @@ public class GoodsDaoImpl implements IGoodsDao {
         Session session = sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(GoodsInfo.class);
         if (userId != null) {
-            criteria.add(Restrictions.eq("userId",userId));
+            criteria.add(Restrictions.eq("userId", userId));
         }
-         goodsInfoList = criteria.list();
+        criteria.addOrder(Order.desc("goodsDate"));
+        goodsInfoList = criteria.list();
         return goodsInfoList;
     }
 
     /**
      * 根据goodsId查询商品信息
+     *
      * @param goodsId
      * @return
      */
@@ -109,10 +113,32 @@ public class GoodsDaoImpl implements IGoodsDao {
         Session session = sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(GoodsInfo.class);
         if (goodsId != null) {
-            criteria.add(Restrictions.eq("goodsId",goodsId));
+            criteria.add(Restrictions.eq("goodsId", goodsId));
         }
         goodsInfo = (GoodsInfo) criteria.uniqueResult();
         return goodsInfo;
+    }
+
+    /**
+     * 获取指定数量的推荐商品，但是不查询用户自己发布的和当前查看的商品
+     *
+     * @param goodsType 查询商品类型
+     * @param goodsId   不查询的商品编号
+     * @param userId    不查询的用户编号（当前登录用户）
+     * @param count     查询数量
+     * @return
+     */
+    public List<GoodsInfo> queryRecommendGoodsInfo(String goodsType, Integer goodsId, Integer userId, Integer count) {
+        Session session = sessionFactory.getCurrentSession();
+        List<GoodsInfo> goodsInfoList = null;
+        String hql = "from GoodsInfo where goodsType = ? and goodsId != ? and userId != ?";
+        Query query = session.createQuery(hql);
+        query.setString(0, goodsType);
+        query.setInteger(1, goodsId);
+        query.setInteger(2, userId);
+        query.setMaxResults(count);
+        goodsInfoList = query.list();
+        return goodsInfoList;
     }
 
     /**
@@ -120,14 +146,12 @@ public class GoodsDaoImpl implements IGoodsDao {
      *
      * @return
      */
-     public List<GoodsInfo> query(GoodsInfo goodsInfo) {
+    public List<GoodsInfo> query(GoodsInfo goodsInfo) {
         List<GoodsInfo> goodsInfoList = null;
         Session session = sessionFactory.getCurrentSession();
-        String hql = "from GoodsInfo where userId <> "+goodsInfo.getUserId();
-         System.out.println("+++++++"+hql+"++++++++++");
+        String hql = "from GoodsInfo where userId <> " + goodsInfo.getUserId() + " order by goodsDate desc";
         Query query = session.createQuery(hql);
         goodsInfoList = query.list();
-
         return goodsInfoList;
     }
 
@@ -141,26 +165,27 @@ public class GoodsDaoImpl implements IGoodsDao {
      * @return
      */
     @Override
-    public List<GoodsInfo> queryGoodsInfoByCondition(String goodsName,String goodsType,Integer minGoodsPrice,Integer maxGoodsPrice,Integer userId) {
+    public List<GoodsInfo> queryGoodsInfoByCondition(String goodsName, String goodsType, Integer minGoodsPrice, Integer maxGoodsPrice, Integer userId) {
 
         List<GoodsInfo> goodsInfoList = null;
         Session session = sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(GoodsInfo.class);
         if (goodsName != null && goodsName != "") {
-            criteria.add(Restrictions.like("goodsName","%"+goodsName+"%"));
+            criteria.add(Restrictions.like("goodsName", "%" + goodsName + "%"));
         }
         if (goodsType != null && goodsType != "") {
-            criteria.add(Restrictions.eq("goodsType",goodsType));
+            criteria.add(Restrictions.eq("goodsType", goodsType));
         }
         if (minGoodsPrice != null) {
-            criteria.add(Restrictions.ge("goodsPrice",minGoodsPrice));
+            criteria.add(Restrictions.ge("goodsPrice", minGoodsPrice));
         }
         if (maxGoodsPrice != null) {
-            criteria.add(Restrictions.lt("goodsPrice",maxGoodsPrice));
+            criteria.add(Restrictions.lt("goodsPrice", maxGoodsPrice));
         }
         if (userId != null) {
-            criteria.add(Restrictions.ne("userId",userId));
+            criteria.add(Restrictions.ne("userId", userId));
         }
+        criteria.addOrder(Order.desc("goodsDate"));
         goodsInfoList = criteria.list();
         return goodsInfoList;
     }

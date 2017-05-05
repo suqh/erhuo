@@ -117,6 +117,27 @@ public class GoodsServiceImpl implements IGoodsService {
     }
 
     /**
+     * 获取指定数量的推荐商品，但是不查询用户自己发布的和当前查看的商品
+     *
+     * @param goodsType 查询商品类型
+     * @param goodsId   不查询的商品编号
+     * @param userId    不查询的用户编号（当前登录用户）
+     * @param count     查询数量
+     * @return
+     */
+    @Override
+    public List<GoodsInfo> queryRecommendGoodsInfo(String goodsType, Integer goodsId, Integer userId, Integer count) {
+        List<GoodsInfo> recommendList = null;
+        try{
+            recommendList = goodsDao.queryRecommendGoodsInfo(goodsType,goodsId,userId,count);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return recommendList;
+    }
+
+
+    /**
      * 根据输入的商品名称、选择的商品类型、商品的价格查询商品
      *
      * @param goodsName

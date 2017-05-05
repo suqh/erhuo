@@ -127,7 +127,7 @@ public class SaleDetailController {
      */
     @RequestMapping("/viewProductDetails")
     public ModelAndView viewProductDetails(HttpServletRequest httpServletRequest, GoodsInfo goodsInfo) {
-
+        List<GoodsInfo> goodsInfoList = null;
         //获取session对象
         HttpSession session = httpServletRequest.getSession();
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
@@ -135,10 +135,13 @@ public class SaleDetailController {
         if (userInfo == null) {
             return new ModelAndView("login");
         }
-
+        //查询需要购买的商品详情
         goodsInfo = goodsService.queryGoodsInfoByGoodsId(Integer.valueOf(goodsInfo.getGoodsId()));
+        //查询相同类型的商品
+        goodsInfoList = goodsService.queryRecommendGoodsInfo(goodsInfo.getGoodsType(),goodsInfo.getGoodsId(),userInfo.getUserId(),5);
         Map<String,Object> modelMap = new HashMap<String, Object>();
         modelMap.put("goodsInfo",goodsInfo);
+        modelMap.put("goodsInfoList",goodsInfoList);
         return new ModelAndView("single",modelMap);
     }
 
