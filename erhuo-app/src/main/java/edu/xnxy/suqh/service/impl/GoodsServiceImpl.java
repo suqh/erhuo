@@ -151,4 +151,23 @@ public class GoodsServiceImpl implements IGoodsService {
         goodsInfoList = goodsDao.queryGoodsInfoByCondition(goodsName,goodsType,minGoodsPrice,maxGoodsPrice,userId);
         return goodsInfoList;
     }
+
+    /**
+     * 查询跟当前商品是同一卖家的其他商品
+     *
+     * @param goodsId 不查询的商品编号
+     * @param userId  所展示商品的用户的编号
+     * @param count   查询数量
+     * @return
+     */
+    @Override
+    public List<GoodsInfo> queryRecommendGoodsInfo(Integer goodsId, Integer userId, Integer count) {
+        List<GoodsInfo> recommendList = null;
+        try{
+            recommendList = goodsDao.queryRecommendGoodsInfo(goodsId,userId,count);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return recommendList;
+    }
 }

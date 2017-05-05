@@ -16,10 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * description:
@@ -67,7 +64,7 @@ public class OtherController {
                     MultipartFile multipartFile = multipartHttpServletRequest.getFile(iterator.next());
                     if (multipartFile != null) {
                          fileName = "imageUpload" + multipartFile.getOriginalFilename();//定义文件名
-                         path = "C:\\Users\\QH\\Desktop\\" + fileName; //定义文件输出路径
+                         path = "D:\\image\\" + fileName; //定义文件输出路径
 
                         File localFile = new File(path);
                         multipartFile.transferTo(localFile); //将文件写到本地
@@ -77,6 +74,8 @@ public class OtherController {
             //保存商品信息
             goodsInfo.setFileName(fileName);
             goodsInfo.setFilePath(path);
+            Date currentDate = new Date();
+            goodsInfo.setGoodsDate(currentDate);
             goodsService.addGoods(goodsInfo);
             httpServletRequest.setAttribute("goodsInfo",goodsInfo);
         } catch (Exception e) {

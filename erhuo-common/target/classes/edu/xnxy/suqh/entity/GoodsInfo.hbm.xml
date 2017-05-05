@@ -36,6 +36,9 @@
         <property name="goodsNum" type="java.lang.Integer">
             <column name="goods_num" length="20" not-null="true" />
         </property>
+        <property name="goodsDate" type="java.util.Date">
+            <column name="goods_date" not-null="false"/>
+        </property>
         <property name="ext1" type="java.lang.Integer">
             <column name="ext1" length="7" not-null="false" />
         </property>

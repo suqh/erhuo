@@ -142,6 +142,27 @@ public class GoodsDaoImpl implements IGoodsDao {
     }
 
     /**
+     * 查询跟当前商品是同一卖家的其他商品
+     *
+     * @param goodsId 不查询的商品编号
+     * @param userId  所展示商品的用户的编号
+     * @param count   查询数量
+     * @return
+     */
+    @Override
+    public List<GoodsInfo> queryRecommendGoodsInfo(Integer goodsId, Integer userId, Integer count) {
+        Session session = sessionFactory.getCurrentSession();
+        List<GoodsInfo> goodsInfoList = null;
+        String hql = "from GoodsInfo where goodsId != ? and userId = ?";
+        Query query = session.createQuery(hql);
+        query.setInteger(0, goodsId);
+        query.setInteger(1, userId);
+        query.setMaxResults(count);
+        goodsInfoList = query.list();
+        return goodsInfoList;
+    }
+
+    /**
      * 查询多条商品信息
      *
      * @return

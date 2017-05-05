@@ -55,7 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul class="memenu skyblue">
                 <li class="active"><a href="/saleList/showSaleList">首页</a></li>
                 <li class="grid"><a href="/page/salePage">我要出售</a></li>
-                <li class="grid"><a href="/page/sale.do">发布的商品</a></li>
+                <li class="grid"><a href="/saleDetail/saleDetailList.do?goodsUserId=${sessionScope.userInfo.userId}">发布的商品</a></li>
                 <li class="grid"><a href="/shoppingCart/shoppingCartPage?userId=${sessionScope.userInfo.userId}">购物车</a>
                 </li>
                 <li class="grid"><a href="/order/orderList?userId=${sessionScope.userInfo.userId}">购买记录</a></li>
@@ -141,7 +141,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </div>
                             </div>
                             <div class="viw">
-                                <a href="/saleDetail/viewProductDetails?goodsId=${goodsInfo.goodsId}"><span
+                                <a href="/saleDetail/viewProductDetails?goodsId=${goodsInfo.goodsId}&goodsType=${goodsInfo.goodsType}"><span
                                         class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>View</a>
                             </div>
                         </a>

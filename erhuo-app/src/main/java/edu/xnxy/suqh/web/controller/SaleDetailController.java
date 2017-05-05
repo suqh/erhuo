@@ -5,6 +5,7 @@ import edu.xnxy.suqh.entity.StaticData;
 import edu.xnxy.suqh.entity.UserInfo;
 import edu.xnxy.suqh.service.IGoodsService;
 import edu.xnxy.suqh.service.IStaticService;
+import edu.xnxy.suqh.service.IUserService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +37,9 @@ public class SaleDetailController {
     @Resource
     private IStaticService staticService;
 
+    @Resource
+    private IUserService userService;
+
     private static final Logger log = Logger.getLogger(RegisterAndLoginController.class);
 
     /**
@@ -50,16 +54,23 @@ public class SaleDetailController {
      * 刷新商品列表
      */
     @RequestMapping("/saleDetailList.do")
-    public String saleDetailList(HttpServletRequest httpServletRequest){
+    public String saleDetailList(HttpServletRequest httpServletRequest, String goodsUserId) {
         List<GoodsInfo> goodsInfoList = null;
         HttpSession session = httpServletRequest.getSession();
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
         Integer userId = userInfo.getUserId();
         try {
-            goodsInfoList = goodsService.queryGoodsInfoByUserId(userId);
-            httpServletRequest.setAttribute("goodsInfoList",goodsInfoList);
+            if (userId == Integer.valueOf(goodsUserId)) {
+                //刷新商品列表
+                goodsInfoList = goodsService.queryGoodsInfoByUserId(userId);
+            } else {
+                //查找该店家的所有宝贝
+                goodsInfoList = goodsService.queryGoodsInfoByUserId(Integer.valueOf(goodsUserId));
+            }
+            httpServletRequest.setAttribute("goodsInfoList", goodsInfoList);
+            httpServletRequest.setAttribute("goodsUserId", goodsUserId);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("刷新商品列表失败", e);
         }
         return "saleDetails";
     }
@@ -67,6 +78,7 @@ public class SaleDetailController {
 
     /**
      * 显示图片
+     *
      * @param response
      * @param imgName
      */
@@ -128,6 +140,7 @@ public class SaleDetailController {
     @RequestMapping("/viewProductDetails")
     public ModelAndView viewProductDetails(HttpServletRequest httpServletRequest, GoodsInfo goodsInfo) {
         List<GoodsInfo> goodsInfoList = null;
+        List<GoodsInfo> otherGoodsInfoList = null;
         //获取session对象
         HttpSession session = httpServletRequest.getSession();
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
@@ -138,11 +151,17 @@ public class SaleDetailController {
         //查询需要购买的商品详情
         goodsInfo = goodsService.queryGoodsInfoByGoodsId(Integer.valueOf(goodsInfo.getGoodsId()));
         //查询相同类型的商品
-        goodsInfoList = goodsService.queryRecommendGoodsInfo(goodsInfo.getGoodsType(),goodsInfo.getGoodsId(),userInfo.getUserId(),5);
-        Map<String,Object> modelMap = new HashMap<String, Object>();
-        modelMap.put("goodsInfo",goodsInfo);
-        modelMap.put("goodsInfoList",goodsInfoList);
-        return new ModelAndView("single",modelMap);
+        goodsInfoList = goodsService.queryRecommendGoodsInfo(goodsInfo.getGoodsType(), goodsInfo.getGoodsId(), userInfo.getUserId(), 5);
+        //查看该卖家的其他宝贝
+        otherGoodsInfoList = goodsService.queryRecommendGoodsInfo(goodsInfo.getGoodsId(), goodsInfo.getUserId(), 4);
+        //查看该商品的卖家的信息
+        UserInfo userInfo1 = userService.queryUserInfoById(goodsInfo.getUserId());
+        Map<String, Object> modelMap = new HashMap<String, Object>();
+        modelMap.put("goodsInfo", goodsInfo);
+        modelMap.put("userInfo1", userInfo1);
+        modelMap.put("goodsInfoList", goodsInfoList);
+        modelMap.put("otherGoodsInfoList", otherGoodsInfoList);
+        return new ModelAndView("single", modelMap);
     }
 
 }

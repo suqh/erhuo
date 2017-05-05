@@ -23,5 +23,6 @@ function removeGoods(goodsId){
 }
 
 function back() {
-    location.href="/saleList/showSaleList"
+   /* location.href="/saleList/showSaleList"*/
+   history.go(-1);
 }

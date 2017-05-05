@@ -63,4 +63,13 @@ public interface IGoodsService {
      * 根据输入的商品名称、选择的商品类型、商品的价格查询商品
      */
     public List<GoodsInfo> queryGoodsInfoByCondition(String goodsName, String goodsType, Integer minGoodsPrice, Integer maxGoodsPrice, Integer userId);
+
+    /**
+     * 查询跟当前商品是同一卖家的其他商品
+     * @param goodsId 不查询的商品编号
+     * @param userId 所展示商品的用户的编号
+     * @param count 查询数量
+     * @return
+     */
+    public List<GoodsInfo> queryRecommendGoodsInfo(Integer goodsId, Integer userId ,Integer count);
 }

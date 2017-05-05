@@ -12,7 +12,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>
-       商品详情
+        商品详情
     </title>
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/css/style.css" rel="stylesheet" type="text/css" media="all"/>
@@ -83,13 +83,11 @@
                                        class="add-cart item_add">修改商品信息</a>
                                 </c:when>
                                 <c:when test="${sessionScope.userInfo.isManager == 1}">
-                                    <%--<a href="/saleList/showSaleList" class="add-cart item_add">继续浏览</a>--%>
                                     <input type="button" class="btn btn-info" value="继续浏览" id="continueBtn">&nbsp;
                                     <input type="button" class="btn btn-info" value="加入购物车" id="addCartBtn"/>&nbsp;
                                     <input type="button" class="btn btn-info" value="删除该商品" id="deleteBtn"/>
                                 </c:when>
                                 <c:otherwise>
-                                    <%--<a href="/saleList/showSaleList" class="add-cart item_add">继续浏览</a>--%>
                                     <input type="button" class="btn btn-info" value="继续浏览" id="continueBtn">&nbsp;&nbsp;
                                     <input type="button" class="btn btn-info" value="加入购物车" id="addCartBtn"/>
                                 </c:otherwise>
@@ -117,64 +115,56 @@
                     <div class="personal_jieshao">
                         <ul class="personal_biaoqian clearfix">
                         </ul>
-                        <div class="personal_touxiang" data-adjust="adjust">
-                            <img src="/images/img3.jpg"
-                                 alt="">
+                 <%--       <div class="personal_touxiang" data-adjust="adjust">
+                            <img src="/images/乔巴.png">
                         </div>
-                        <p class="personal_name">技术实力</p>
-                        <p class="personal_chengjiu">她加入转转332天，常居长沙雨花</p>
-                        <div class="zhima">
-                            <span>查看买家信息</span>
-                        </div>
-                    </div>
-                    <div class="personal_salebaby">
-                        <h3 class="person_title">她的宝贝(9)</h3>
-                        <ul class="salebaby_list">
-                            <li>
-                                <a href="http://zhuanzhuan.58.com/detail/857125443561734153z.shtml" target="_blank">
-                                    <div data-adjust="adjust" class="plist_img">
-                                        <img rel="" alt="苹果耳机-数据线-充电头"
-                                             src="/images/img3.jpg"
-                                             style="height: 100%; width: auto; left: 0px;">
-                                    </div>
-                                    <span class="plist_price"><i>100</i>元</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://zhuanzhuan.58.com/detail/854910100067991558z.shtml" target="_blank">
-                                    <div data-adjust="adjust" class="plist_img">
-                                        <img rel="" alt="苹果耳机-数据线-充电头"
-                                             src="/images/img3.jpg"
-                                             style="width: 100%; height: auto; top: -33.5px;">
-                                    </div>
-                                    <span class="plist_price"><i>38</i>元</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <a href="/page/sale.do">
-                            <div class="salebaby_more">点击查看他的全部宝贝</div>
+                        <p class="personal_name">${requestScope.userInfo1.userName}</p>--%>
+                        <%--<p class="personal_chengjiu">她加入转转332天，常居长沙雨花</p>--%>
+                        <a href="/serllerInfo/serllerInfo?goodsUserId=${requestScope.goodsInfo.userId}">
+                            <div class="zhima">
+                                <span>查看卖家信息</span>
+                            </div>
                         </a>
+                        <div class="personal_salebaby">
+                            <h3 class="person_title">她的宝贝</h3>
+                            <ul class="salebaby_list">
+                                <c:forEach items="${requestScope.otherGoodsInfoList}" var="otherGoodsInfo">
+                                    <li>
+                                        <a href="" target="_blank">
+                                            <div data-adjust="adjust" class="plist_img">
+                                                <img src="/saleDetail/showImage?imgName=${otherGoodsInfo.fileName}"
+                                                     style="height: 100%; width: auto; left: 0px;">
+                                            </div>
+                                            <span class="plist_price"><i>${otherGoodsInfo.goodsPrice}</i>元</span>
+                                        </a>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                            <a href="/saleDetail/saleDetailList.do?goodsUserId=${requestScope.goodsInfo.userId}">
+                                <div class="salebaby_more">点击查看他的全部宝贝</div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="bottom-prdt">
-            <ul class="d-main-tab">
-                <li style="list-style-type: none"><span
-                        style="font-family: 微软雅黑;font-size: 20px;color: #808080;">相似商品推荐</span></li>
-            </ul>
-            <div class="btm-grid-sec">
-                <c:forEach items="${requestScope.goodsInfoList}" var="item">
-                    <div class="col-md-2 btm-grid">
-                        <a href="/saleDetail/viewProductDetails?goodsId=${item.goodsId}&goodsType=${item.goodsType}">
-                            <img src="/saleDetail/showImage?imgName=${item.fileName}" alt=""
-                                 style="width: 166px;height: 194px"/>
-                            <h4>${item.goodsName}</h4>
-                            <span>￥${item.goodsPrice}</span></a>
-                    </div>
-                </c:forEach>
-                <div class="clearfix"></div>
+            <div class="clearfix"></div>
+            <div class="bottom-prdt">
+                <ul class="d-main-tab">
+                    <li style="list-style-type: none"><span
+                            style="font-family: 微软雅黑;font-size: 20px;color: #808080;">相似商品推荐</span></li>
+                </ul>
+                <div class="btm-grid-sec">
+                    <c:forEach items="${requestScope.goodsInfoList}" var="item">
+                        <div class="col-md-2 btm-grid">
+                            <a href="/saleDetail/viewProductDetails?goodsId=${item.goodsId}&goodsType=${item.goodsType}">
+                                <img src="/saleDetail/showImage?imgName=${item.fileName}" alt=""
+                                     style="width: 166px;height: 194px"/>
+                                <h4>${item.goodsName}</h4>
+                                <span>￥${item.goodsPrice}</span></a>
+                        </div>
+                    </c:forEach>
+                    <div class="clearfix"></div>
+                </div>
             </div>
         </div>
     </div>

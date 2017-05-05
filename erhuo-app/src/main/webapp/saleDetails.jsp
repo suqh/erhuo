@@ -36,7 +36,12 @@
 <div class="container">
     <div class="check-sec">
         <div class="col-md-9 cart-items">
-            <h1>上传商品列表</h1>
+            <c:if test="${sessionScope.userInfo.userId == goodsUserId}">
+                <h1>上传商品列表</h1>
+            </c:if>
+            <c:if test="${sessionScope.userInfo.userId != goodsUserId}">
+                <h1>他的全部宝贝</h1>
+            </c:if>
             <c:forEach items="${requestScope.goodsInfoList}" var="goodsInfo">
                 <div class="cart-header">
                     <c:if test="${sessionScope.userInfo.userId == goodsInfo.userId}">
@@ -78,7 +83,7 @@
                     </div>
                 </div>
             </c:forEach>
-            <input type="button" value="返回首页" class="btn btn-info" id="backBtn" onclick="back()">
+            <input type="button" value="返回" class="btn btn-info" id="backBtn" onclick="back()">
         </div>
         <div class="clearfix"></div>
     </div>

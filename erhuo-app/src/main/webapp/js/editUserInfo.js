@@ -16,7 +16,7 @@ $(document).ready(function () {
             "userGender": $("input[type=radio]:checked").val(),
             "userAge": $("#userAge").val(),
             "userEmail": $("#userEmail").val(),
-            "userAdderss": $("#userAdderss").val(),
+            "userAddress": $("#userAddress").val(),
             "userPhone": $("#userPhone").val(),
         }
     };
@@ -30,7 +30,7 @@ $(document).ready(function () {
             alert("用户年龄不能为空");
             return false;
         }
-        if (userInfo.userAdderss == null || userInfo.userAdderss == "") {
+        if (userInfo.userAddress == null || userInfo.userAddress == "") {
             alert("用户地址不能为空");
             return false;
         }

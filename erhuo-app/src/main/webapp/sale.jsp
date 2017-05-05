@@ -33,10 +33,6 @@
             <input type="file" class="form-control" id="fileInput" name="file">
         </div>
     </div>
-    <%--
-     <label for="firstname" class="col-sm-2 control-label" style="margin-top: 70px">上传图片</label>
-            <img type="file" src="/images/shangchuantupian.png" style="width: 150px;height: 150px;margin-left: 150px;margin-top: 40px"  class="img-circle" id="upload">
-    --%>
     <div class="form-group">
         <label class="col-sm-2 control-label">商品名称</label>
         <div class="col-sm-4">
