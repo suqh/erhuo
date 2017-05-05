@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Description: 修改山品信息控制器
+ * Description: 商品信息控制器
  *
  * @author suqh
  *         Created by suqh on 2017/4/25.
