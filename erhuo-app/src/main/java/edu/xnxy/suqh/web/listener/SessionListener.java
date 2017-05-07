@@ -1,20 +1,14 @@
 package edu.xnxy.suqh.web.listener;
 
-import edu.xnxy.suqh.entity.StaticData;
 import edu.xnxy.suqh.entity.UserAccess;
-import edu.xnxy.suqh.service.IStaticService;
 import edu.xnxy.suqh.service.IUserAccessService;
-import edu.xnxy.suqh.util.IPUtil;
 import org.apache.log4j.Logger;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 import java.util.Date;
-import java.util.List;
 
 /**
  * description:Session监听
