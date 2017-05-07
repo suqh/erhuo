@@ -61,9 +61,10 @@
                 </prop>
 
                 <!-- 连接池hibernate配置 需要再次置数据源,c3p0才起作用
+
                  否则提示报错 The user must supply a JDBC connection
                  -->
-                <prop key="hibernate.connection.provider_class">org.hibernate.connection.ConnectionProviderFactory</prop>
+                <prop key="hibernate.connection.provider_class">org.hibernate.connection.DriverManagerConnectionProvider</prop>
                 <prop key="hibernate.connection.driver_class">${c3p0.driverClass}</prop>
                 <prop key="hibernate.connection.url">${c3p0.jdbcUrl}</prop>
                 <prop key="hibernate.connection.username">${c3p0.username}</prop>
