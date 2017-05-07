@@ -57,11 +57,11 @@
             <h3 class="form-title" style="margin-left: 38px">卖家详细信息</h3>
             <div class="col-sm-9 col-md-9">
                 <input type="hidden" name="userId" value="${requestScope.userInfo.userId}" id="userId"/>
-                <div class="form-group">
+         <%--       <div class="form-group">
                     <div class="personal_touxiang" data-adjust="adjust">
                         <img src="/images/乔巴.png">
                     </div>
-                </div>
+                </div>--%>
                 <div class="form-group">
                     <i class="fa fa-user fa-lg"></i>
                     <input class="form-control required" type="text" name="userName" placeholder="请输入姓名" autofocus="autofocus"

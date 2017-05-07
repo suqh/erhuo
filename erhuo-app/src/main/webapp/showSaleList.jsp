@@ -59,7 +59,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="grid"><a href="/shoppingCart/shoppingCartPage?userId=${sessionScope.userInfo.userId}">购物车</a>
                 </li>
                 <li class="grid"><a href="/order/orderList?userId=${sessionScope.userInfo.userId}">购买记录</a></li>
-                <li class="grid"><a href="/salesAnalysis/salesAnalysisPage">销售情况</a></li>
+                <c:if test="${sessionScope.userInfo != null && sessionScope.userInfo.isManager == 1}">
+                    <li class="grid"><a href="/salesAnalysis/salesAnalysisPage">销售情况</a></li>
+                </c:if>
                 <li class="grid"><a href="/question/questionPage">常见问题</a></li>
             </ul>
         </div>

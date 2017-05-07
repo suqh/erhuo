@@ -54,7 +54,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </ul>
             <div class="clearfix"></div>
             <div class="clearfix"></div>
-            <a class="order" href="/shoppingCart/confirmOrderPage?userId=${sessionScope.userInfo.userId}">马上下单</a>
+            <c:if test="${shoppingCartInfoList.size() != 0}">
+                <a class="order" href="/shoppingCart/confirmOrderPage?userId=${sessionScope.userInfo.userId}">马上下单</a>
+            </c:if>
         </div>
         <div class="col-md-9 cart-items">
             <h1>我的购物车</h1>
