@@ -99,4 +99,20 @@ public class OrderInfoServiceImpl implements IOrderInfoService{
         }
         return orderInfoList;
     }
+
+    /**
+     * 获取15天前每种类型商品的销售数量
+     *
+     * @return
+     */
+    @Override
+    public List countOrderType() {
+        List countTypeList = null;
+        try {
+            countTypeList = orderInfoDao.countOrderType();
+        } catch (Exception e) {
+            log.error("获取15天前每种类型商品的销售数量失败",e);
+        }
+        return countTypeList;
+    }
 }

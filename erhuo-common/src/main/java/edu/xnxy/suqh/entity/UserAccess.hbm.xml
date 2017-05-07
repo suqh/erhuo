@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="edu.xnxy.suqh.entity.UserAccess" table="user_access">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" length="11" not-null="true"></column>
+            <generator class="identity"></generator>
+        </id>
+        <property name="accessDate" type="java.util.Date">
+            <column name="access_date" not-null="true"></column>
+        </property>
+        <property name="ext1" type="java.lang.Integer">
+            <column name="ext1" length="11" not-null="false"></column>
+        </property>
+        <property name="ext2" type="java.lang.String">
+            <column name="ext2" length="20" not-null="false"></column>
+        </property>
+        <property name="ext3" type="java.lang.String">
+            <column name="ext3" length="20" not-null="false"></column>
+        </property>
+    </class>
+</hibernate-mapping>

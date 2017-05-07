@@ -54,4 +54,10 @@ public interface IOrderInfoService {
      * @return
      */
     public List<OrderInfo> queryOrderInfoById(Integer userId);
+
+    /**
+     * 获取15天前每种类型商品的销售数量
+     * @return
+     */
+    public List countOrderType();
 }

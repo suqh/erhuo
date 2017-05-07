@@ -26,4 +26,10 @@ public interface IOrderInfoDao extends BaseDao<OrderInfo>{
      * @param orderId
      */
     public void deleteOrderInfo(Integer userId,Integer orderId);
+
+    /**
+     * 获取15天前每种类型商品的销售数量
+     * @return
+     */
+    public List countOrderType();
 }

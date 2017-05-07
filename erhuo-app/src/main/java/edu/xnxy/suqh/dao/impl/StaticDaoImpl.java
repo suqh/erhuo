@@ -24,6 +24,7 @@ public class StaticDaoImpl implements IStaticDao {
 
     @Resource
     private SessionFactory sessionFactory;
+
     /**
      * 新增一条记录
      *

@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,7 +21,7 @@ import java.util.List;
  *         Created by suqh on 2017/4/30.
  */
 @Repository("orderInfoDao")
-public class OrderInfoDaoImpl implements IOrderInfoDao{
+public class OrderInfoDaoImpl implements IOrderInfoDao {
 
     @Resource
     private SessionFactory sessionFactory;
@@ -83,7 +86,7 @@ public class OrderInfoDaoImpl implements IOrderInfoDao{
         List<OrderInfo> orderInfoList = null;
         String hql = "from OrderInfo where orderUserId = ?";
         Query query = session.createQuery(hql);
-        query.setInteger(0,userId);
+        query.setInteger(0, userId);
         orderInfoList = query.list();
         return orderInfoList;
     }
@@ -99,8 +102,32 @@ public class OrderInfoDaoImpl implements IOrderInfoDao{
         Session session = sessionFactory.getCurrentSession();
         String hql = "delete from OrderInfo where orderUserId = ? and orderId = ?";
         Query query = session.createQuery(hql);
-        query.setInteger(0,userId);
-        query.setInteger(1,orderId);
+        query.setInteger(0, userId);
+        query.setInteger(1, orderId);
         query.executeUpdate();
+    }
+
+    /**
+     * 获取15天前每种类型商品的销售数量
+     *
+     * @return
+     */
+    @Override
+    public List countOrderType() {
+        Session session = sessionFactory.getCurrentSession();
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, -15);
+        Date startDate = calendar.getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String start = "'" + dateFormat.format(startDate) + "'";
+        String hql = "SELECT  c.codeName, COUNT(b.orderGoodsId) " +
+                " FROM GoodsInfo a, OrderInfo b, StaticData c " +
+                " WHERE a.goodsId = b.orderGoodsId" +
+                " AND c.codeType = 2" +
+                " AND a.goodsType = c.codeId" +
+                " AND DATE_FORMAT(b.orderDate,'%Y-%m-%d')  >=" + start +
+                " GROUP BY c.codeName";
+        List list = session.createQuery(hql).list();
+        return list;
     }
 }
