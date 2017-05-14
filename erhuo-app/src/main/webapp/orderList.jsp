@@ -37,7 +37,7 @@
 <div class="container">
     <div class="check-sec">
         <div class="col-md-9 cart-items">
-            <h1>上传商品列表</h1>
+            <h1>购买记录</h1>
             <c:forEach items="${requestScope.orderInfoList}" var="orderInfo">
                 <div class="cart-header">
                     <div class="close1" onclick="removeGoods(${orderInfo.orderUserId},${orderInfo.orderId})"></div>
@@ -51,17 +51,6 @@
                             <h3>
                                 <a href="/saleDetail/viewProductDetails?goodsId=${orderInfo.orderGoodsId}&userId=${sessionScope.userInfo.userId}">商品名称
                                     ：${orderInfo.orderGoodsName}</a>
-                                    <%--                 <span>
-                                                         类型 :
-                                                         <c:if test="${orderInfo.goodsType == 1}">校园代步</c:if>
-                                                         <c:if test="${orderInfo.goodsType == 2}">电子设备</c:if>
-                                                         <c:if test="${orderInfo.goodsType == 3}">电器</c:if>
-                                                         <c:if test="${orderInfo.goodsType == 4}">电脑</c:if>
-                                                         <c:if test="${orderInfo.goodsType == 5}">运动健身</c:if>
-                                                         <c:if test="${orderInfo.goodsType == 6}">衣物伞冒</c:if>
-                                                         <c:if test="${orderInfo.goodsType == 7}">图书教材</c:if>
-                                                         <c:if test="${orderInfo.goodsType == 8}">其他</c:if>
-                                                     </span>--%>
                             </h3>
                             <br>
                             <ul class="qty">

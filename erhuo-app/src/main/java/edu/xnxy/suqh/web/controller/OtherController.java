@@ -45,9 +45,13 @@ public class OtherController {
         return "sale";
     }
 
-    /*
-    * 上传图片
-    * */
+    /**
+     * Description 发布商品
+     * @param httpServletRequest
+     * @param goodsInfo
+     * @return
+     * @throws IOException
+     */
     @RequestMapping("/sale.do")
     public String upload(HttpServletRequest httpServletRequest, GoodsInfo goodsInfo) throws IOException {
         String fileName = "";
@@ -74,6 +78,7 @@ public class OtherController {
             //保存商品信息
             goodsInfo.setFileName(fileName);
             goodsInfo.setFilePath(path);
+            //保存发布商品时间
             Date currentDate = new Date();
             goodsInfo.setGoodsDate(currentDate);
             goodsService.addGoods(goodsInfo);

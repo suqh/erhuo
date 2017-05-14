@@ -86,11 +86,14 @@ public class UserAccessDaoImpl implements IUserAccessDao {
     @Override
     public List countUserAccess() {
         Session session = sessionFactory.getCurrentSession();
+        //获取15天之前的时间
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, -15);
         Date startDate = calendar.getTime();
+        //将获取15天之前的时间转成“yyyy-MM-dd”的格式
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String start = "'" + dateFormat.format(startDate) + "'";
+        //统计前15天的用户访问量
         String hql = "SELECT  DATE_FORMAT(accessDate, '%m/%e'), COUNT(ID) FROM UserAccess  WHERE DATE_FORMAT(accessDate,'%Y-%m-%d') >= " + start + "  GROUP BY  accessDate ORDER  BY accessDate ASC";
         List list = session.createQuery(hql).list();
         return list;

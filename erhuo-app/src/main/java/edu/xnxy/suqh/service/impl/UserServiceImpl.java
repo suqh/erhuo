@@ -76,9 +76,10 @@ public class UserServiceImpl implements IUserService {
     }
 
     /**
-     * 查询用户信息
-     *
+     * Description 登录，查询用户是否存在
      * @param userInfo
+     * @return
+     * @throws Exception
      */
     public UserInfo login(UserInfo userInfo) throws Exception {
         UserInfo userInfo1 = null;

@@ -72,7 +72,7 @@
                 </div>
                 <div class="form-group">
                     <i class="fa fa-envelope fa-lg"></i>
-                    <input class="form-control required" type="text" placeholder="请输入地址" id="userAdderss" name="userAdderss"/>
+                    <input class="form-control required" type="text" placeholder="请输入地址" id="userAddress" name="userAdderss"/>
                 </div>
                 <div class="form-group">
                     <i class="fa fa-envelope fa-lg"></i>

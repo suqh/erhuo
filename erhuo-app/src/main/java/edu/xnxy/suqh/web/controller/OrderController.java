@@ -92,8 +92,7 @@ public class OrderController {
     }
 
     /**
-     * 显示订单记录
-     *
+     * Description 显示购买记录
      * @param userId 用户编号
      * @return
      */
@@ -107,6 +106,7 @@ public class OrderController {
             UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
             //用户没有登录时跳转到登录页面，登录了直接跳转到我的购物车页面
             if (userInfo != null) {
+                //根据userId查找购买记录
                 orderInfoList = orderInfoService.queryOrderInfoById(userId);
                 view = "orderList";
                 resultMap.put("status", 0);

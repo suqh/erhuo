@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,11 +34,19 @@ public class ModifyGoodsController {
         return "modifyGoodsInfo";
     }
 
+    /**
+     * Description 修改商品信息
+     * @param httpServletRequest
+     * @param goodsInfo
+     * @return
+     */
     @RequestMapping("/modifyGoodsInfo.do")
     @ResponseBody
     public Map<String,Object> modifyGoodsInfo(HttpServletRequest httpServletRequest,GoodsInfo goodsInfo) {
         Map<String,Object> resultMap = new HashMap<String,Object>();
         try {
+            //修改商品信息
+            goodsInfo.setGoodsDate(new Date());
             goodsService.updateGoods(goodsInfo);
             resultMap.put("status",1);
             resultMap.put("goodsId",goodsInfo.getGoodsId());

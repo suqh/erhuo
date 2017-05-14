@@ -56,17 +56,9 @@ public class SaleDetailController {
     @RequestMapping("/saleDetailList.do")
     public String saleDetailList(HttpServletRequest httpServletRequest, String goodsUserId) {
         List<GoodsInfo> goodsInfoList = null;
-        HttpSession session = httpServletRequest.getSession();
-        UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
-        Integer userId = userInfo.getUserId();
         try {
-            if (userId == Integer.valueOf(goodsUserId)) {
-                //刷新商品列表
-                goodsInfoList = goodsService.queryGoodsInfoByUserId(userId);
-            } else {
-                //查找该店家的所有宝贝
-                goodsInfoList = goodsService.queryGoodsInfoByUserId(Integer.valueOf(goodsUserId));
-            }
+            //查找该店家的所有宝贝
+            goodsInfoList = goodsService.queryGoodsInfoByUserId(Integer.valueOf(goodsUserId.trim()));
             httpServletRequest.setAttribute("goodsInfoList", goodsInfoList);
             httpServletRequest.setAttribute("goodsUserId", goodsUserId);
         } catch (Exception e) {
@@ -115,14 +107,18 @@ public class SaleDetailController {
         }
     }
 
-    /*
-     * 删除商品
-     * */
+    /**
+     * Desciption 删除已发布商品
+     * @param httpServletRequest
+     * @param goodsInfo
+     * @return
+     */
     @RequestMapping("/deleteGoods")
     @ResponseBody
     public Map<String, Object> deleteGoodsInfo(HttpServletRequest httpServletRequest, GoodsInfo goodsInfo) {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         try {
+            //删除商品
             goodsService.deleteGoods(goodsInfo);
             resultMap.put("status", 1);
             resultMap.put("message", "删除商品成功");
@@ -135,7 +131,10 @@ public class SaleDetailController {
     }
 
     /**
-     * 查看商品详情
+     * Description 查看商品详情
+     * @param httpServletRequest
+     * @param goodsInfo
+     * @return
      */
     @RequestMapping("/viewProductDetails")
     public ModelAndView viewProductDetails(HttpServletRequest httpServletRequest, GoodsInfo goodsInfo) {
@@ -144,14 +143,14 @@ public class SaleDetailController {
         //获取session对象
         HttpSession session = httpServletRequest.getSession();
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
-        //用户没有登录时跳转到登录页面，登录了直接跳转到发布商品界面
-        if (userInfo == null) {
-            return new ModelAndView("login");
+        Integer userId = null;
+        if (userInfo != null) {
+            userId = userInfo.getUserId();
         }
         //查询需要购买的商品详情
         goodsInfo = goodsService.queryGoodsInfoByGoodsId(Integer.valueOf(goodsInfo.getGoodsId()));
         //查询相同类型的商品
-        goodsInfoList = goodsService.queryRecommendGoodsInfo(goodsInfo.getGoodsType(), goodsInfo.getGoodsId(), userInfo.getUserId(), 5);
+        goodsInfoList = goodsService.queryRecommendGoodsInfo(goodsInfo.getGoodsType(), goodsInfo.getGoodsId(), userId, 5);
         //查看该卖家的其他宝贝
         otherGoodsInfoList = goodsService.queryRecommendGoodsInfo(goodsInfo.getGoodsId(), goodsInfo.getUserId(), 4);
         //查看该商品的卖家的信息

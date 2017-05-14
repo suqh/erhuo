@@ -20,7 +20,10 @@ $(document).ready(function () {
    var initEvent = function () {
        $("#addCartBtn").click(function () {
            getData();
-           if($("#goodsNum").val()!=0){
+           //没有登录不能加入购物车,跳转到登录界面
+           if(shoppingCartInfo.userId == "" || shoppingCartInfo.userId == undefined) {
+               location.href="/registerAndLogin/loginPage";
+           }else if($("#goodsNum").val()!=0){
                $.ajax({
                    url:"/shoppingCart/addShoppingCart",
                    type:"post",

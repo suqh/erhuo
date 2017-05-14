@@ -60,7 +60,7 @@ $(document).ready(function () {
             if(validate()){
                 $("#tf").submit();
             }
-        })
+        });
         $("#cancelBtn").click(function () {
             location.href="/saleList/showSaleList"
         })

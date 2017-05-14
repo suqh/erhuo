@@ -54,7 +54,7 @@
 <div>
     <div class="form row">
         <form class="form-horizontal col-sm-offset-3 col-md-offset-3" id="register_form">
-            <h3 class="form-title">修改用户信息</h3>
+            <h3 class="form-title">修改个人信息</h3>
             <div class="col-sm-9 col-md-9">
                 <input type="hidden" name="userId" value="${sessionScope.userInfo.userId}" id="userId"/>
               <%--  <div class="form-group">

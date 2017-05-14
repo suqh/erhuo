@@ -95,6 +95,12 @@ public class RegisterAndLoginController{
         return "editUserInfo";
     }
 
+    /**
+     * Description 修改个人信息
+     * @param httpServletRequest
+     * @param userInfo
+     * @return
+     */
     @RequestMapping("editUserInfo.do")
     @ResponseBody
     public Map<String,Object> editUserInfo(HttpServletRequest httpServletRequest,UserInfo userInfo) {
@@ -102,9 +108,11 @@ public class RegisterAndLoginController{
         try {
             //获取session对象
             HttpSession session = httpServletRequest.getSession();
+            //获取当前登录用户的信息
             UserInfo userInfo1 = (UserInfo) session.getAttribute("userInfo");
             userInfo.setUserId(userInfo1.getUserId());
             userInfo.setUserPassword(userInfo1.getUserPassword());
+            //修改用户信息
             userService.update(userInfo);
             resultMap.put("status",1);
             resultMap.put("userId",userInfo1.getUserId());

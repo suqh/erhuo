@@ -78,7 +78,7 @@
                             </div>
                             <c:choose>
                                 <c:when test="${sessionScope.userInfo.userId == requestScope.goodsInfo.userId}">
-                                    <a href="/saleDetail/saleDetailList.do" class="add-cart item_add">返回商品列表</a>
+                                    <a href="/saleDetail/saleDetailList.do?goodsUserId=${requestScope.goodsInfo.userId}" class="add-cart item_add">返回商品列表</a>
                                     <a href="/modify/modifyGoodsInfo?goodsId=${requestScope.goodsInfo.goodsId}"
                                        class="add-cart item_add">修改商品信息</a>
                                 </c:when>
@@ -110,45 +110,48 @@
                     <div class="clearfix"></div>
                 </div>
             </div>
-            <div class="box_right">
-                <div class="personal">
-                    <div class="personal_jieshao">
-                        <ul class="personal_biaoqian clearfix">
-                        </ul>
-                 <%--       <div class="personal_touxiang" data-adjust="adjust">
-                            <img src="/images/乔巴.png">
-                        </div>
-                        <p class="personal_name">${requestScope.userInfo1.userName}</p>--%>
-                        <%--<p class="personal_chengjiu">她加入转转332天，常居长沙雨花</p>--%>
-                        <a href="/serllerInfo/serllerInfo?goodsUserId=${requestScope.goodsInfo.userId}">
-                            <div class="zhima">
-                                <span>查看卖家信息</span>
-                            </div>
-                        </a>
-                        <div class="personal_salebaby">
-                            <h3 class="person_title">她的宝贝</h3>
-                            <ul class="salebaby_list">
-                                <c:forEach items="${requestScope.otherGoodsInfoList}" var="otherGoodsInfo">
-                                    <li>
-                                        <a href="" target="_blank">
-                                            <div data-adjust="adjust" class="plist_img">
-                                                <img src="/saleDetail/showImage?imgName=${otherGoodsInfo.fileName}"
-                                                     style="height: 100%; width: auto; left: 0px;">
-                                            </div>
-                                            <span class="plist_price"><i>${otherGoodsInfo.goodsPrice}</i>元</span>
-                                        </a>
-                                    </li>
-                                </c:forEach>
+            <c:if test="${sessionScope.userInfo.userId != requestScope.goodsInfo.userId}">
+                <div class="box_right">
+                    <div class="personal">
+                        <div class="personal_jieshao">
+                            <ul class="personal_biaoqian clearfix">
                             </ul>
-                            <a href="/saleDetail/saleDetailList.do?goodsUserId=${requestScope.goodsInfo.userId}">
-                                <div class="salebaby_more">点击查看他的全部宝贝</div>
+                                <%--       <div class="personal_touxiang" data-adjust="adjust">
+                                           <img src="/images/乔巴.png">
+                                       </div>
+                                       <p class="personal_name">${requestScope.userInfo1.userName}</p>--%>
+                                <%--<p class="personal_chengjiu">她加入转转332天，常居长沙雨花</p>--%>
+                            <a href="/serllerInfo/serllerInfo?goodsUserId=${requestScope.goodsInfo.userId}">
+                                <div class="zhima">
+                                    <span>查看卖家信息</span>
+                                </div>
                             </a>
+                            <div class="personal_salebaby">
+                                <h3 class="person_title">她的宝贝</h3>
+                                <ul class="salebaby_list">
+                                    <c:forEach items="${requestScope.otherGoodsInfoList}" var="otherGoodsInfo">
+                                        <li>
+                                            <a href="/saleDetail/viewProductDetails?goodsId=${otherGoodsInfo.goodsId}&goodsType=${otherGoodsInfo.goodsType}">
+                                                <div data-adjust="adjust" class="plist_img">
+                                                    <img src="/saleDetail/showImage?imgName=${otherGoodsInfo.fileName}"
+                                                         style="height: 100%; width: auto; left: 0px;">
+                                                </div>
+                                                <span class="plist_price"><i>${otherGoodsInfo.goodsPrice}</i>元</span>
+                                            </a>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                                <a href="/saleDetail/saleDetailList.do?goodsUserId=${requestScope.goodsInfo.userId}">
+                                    <div class="salebaby_more">点击查看他的全部宝贝</div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </c:if>
             <div class="clearfix"></div>
-            <div class="bottom-prdt">
+            <c:if test="${requestScope.goodsInfoList.size() != 0}">
+                <div class="bottom-prdt">
                 <ul class="d-main-tab">
                     <li style="list-style-type: none"><span
                             style="font-family: 微软雅黑;font-size: 20px;color: #808080;">相似商品推荐</span></li>
@@ -166,6 +169,7 @@
                     <div class="clearfix"></div>
                 </div>
             </div>
+            </c:if>
         </div>
     </div>
 </div>

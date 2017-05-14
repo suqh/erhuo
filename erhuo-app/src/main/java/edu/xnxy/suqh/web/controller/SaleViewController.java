@@ -64,13 +64,14 @@ public class SaleViewController {
         List<StaticData> goodsTypeList = new ArrayList<StaticData>();
         GoodsInfo goodsInfo = new GoodsInfo();
         try {
+               //获取所有商品信息
                 if(goodsType.equals("0")) {
                     if (userInfo == null) {
                         goodsInfoList = goodsService.queryGoodsInfoByCondition(goodsName,null,minGoodsPrice,maxGoodsPrice,null);
                     }else {
                         goodsInfoList = goodsService.queryGoodsInfoByCondition(goodsName, null, minGoodsPrice, maxGoodsPrice, userId);
                     }
-                }else {
+                }else { //获取具体类型的商品信息
                     if (userInfo == null) {
                         goodsInfoList = goodsService.queryGoodsInfoByCondition(goodsName, goodsType, minGoodsPrice, maxGoodsPrice, null);
                     }else {

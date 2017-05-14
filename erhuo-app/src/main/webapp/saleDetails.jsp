@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="ftm" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
 <html>
 <head>
@@ -37,7 +38,7 @@
     <div class="check-sec">
         <div class="col-md-9 cart-items">
             <c:if test="${sessionScope.userInfo.userId == goodsUserId}">
-                <h1>上传商品列表</h1>
+                <h1>发布商品列表</h1>
             </c:if>
             <c:if test="${sessionScope.userInfo.userId != goodsUserId}">
                 <h1>他的全部宝贝</h1>
@@ -45,7 +46,7 @@
             <c:forEach items="${requestScope.goodsInfoList}" var="goodsInfo">
                 <div class="cart-header">
                     <c:if test="${sessionScope.userInfo.userId == goodsInfo.userId}">
-                        <div class="close1" onclick="removeGoods(${goodsInfo.goodsId})"></div>
+                        <div class="close1" onclick="removeGoods(${goodsInfo.goodsId},${sessionScope.userInfo.userId})"></div>
                     </c:if>
                     <div class="cart-sec simpleCart_shelfItem">
                         <input type="hidden" id="goodsId" value="${goodsInfo.goodsId}">
@@ -72,7 +73,8 @@
                             <ul class="qty">
                                 <li><p>数量 : ${goodsInfo.goodsNum}</p></li>
                             </ul>
-                            商品描述 ：${goodsInfo.goodsDesc}
+                            商品描述 ：${goodsInfo.goodsDesc}<br/>
+                            发布时间 ：<ftm:formatDate value="${goodsInfo.goodsDate}" pattern="yyyy-MM-dd"></ftm:formatDate>
                             <div class="delivery">
                                 <p>售价 : ${goodsInfo.goodsPrice}</p>
                                 <span>交易地点：${goodsInfo.tradLocation}</span>
@@ -88,6 +90,6 @@
         <div class="clearfix"></div>
     </div>
 </div>
-<script type="text/javascript" src="/js/saleDetails.js"></script>
 </body>
+<script type="text/javascript" src="/js/saleDetails.js"></script>
 </html>

@@ -60,7 +60,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">价格</label>
         <div class="col-sm-2">
-            <input class="form-control" placeholder="￥" name="goodsPrice" id="goodsPrice"/>
+            <input type="text" class="form-control" placeholder="￥" name="goodsPrice" id="goodsPrice"/>
         </div>
     </div>
     <div class="form-group">
@@ -93,6 +93,6 @@
         </div>
     </div>
 </form>
-<script type="text/javascript" src="/js/sale.js"></script>
 </body>
+<script type="text/javascript" src="/js/sale.js"></script>
 </html>

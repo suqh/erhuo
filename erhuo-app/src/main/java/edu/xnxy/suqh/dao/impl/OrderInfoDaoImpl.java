@@ -108,18 +108,20 @@ public class OrderInfoDaoImpl implements IOrderInfoDao {
     }
 
     /**
-     * 获取15天前每种类型商品的销售数量
+     * Description:获取15天前每种类型商品的销售数量
      *
      * @return
      */
     @Override
     public List countOrderType() {
         Session session = sessionFactory.getCurrentSession();
+        //获取15天前的时间
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, -15);
         Date startDate = calendar.getTime();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String start = "'" + dateFormat.format(startDate) + "'";
+        //查询15天内各种商品类型的销售情况
         String hql = "SELECT  c.codeName, COUNT(b.orderGoodsId) " +
                 " FROM GoodsInfo a, OrderInfo b, StaticData c " +
                 " WHERE a.goodsId = b.orderGoodsId" +

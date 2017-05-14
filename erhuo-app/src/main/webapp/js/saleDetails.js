@@ -2,7 +2,7 @@
  * Created by QH on 2017/4/24.
  */
 
-function removeGoods(goodsId){
+function removeGoods(goodsId,userId){
     if(window.confirm("是否删除该商品?")){
         $.ajax({
             url:"/saleDetail/deleteGoods",
@@ -15,7 +15,7 @@ function removeGoods(goodsId){
                     alert(data.error);
                 }else {
                     alert(data.message);
-                    location.href = "/saleDetail/saleDetailList.do";
+                    location.href = "/saleDetail/saleDetailList.do?goodsUserId="+userId;
                 }
             }
         });
@@ -23,6 +23,5 @@ function removeGoods(goodsId){
 }
 
 function back() {
-   /* location.href="/saleList/showSaleList"*/
-   history.go(-1);
+    location.href="/saleList/showSaleList";
 }

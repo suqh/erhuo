@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: QH
@@ -72,86 +73,16 @@
         <label class="col-sm-2 control-label">分类</label>
         <div class="col-sm-2">
             <select class="form-control" name="goodsType" id="goodsType">
-                <c:if test="${requestScope.goodsInfo.goodsType == 1}">
-                    <option value="1" selected="selected">校园代步</option>
-                    <option value="2">电子设备</option>
-                    <option value="3">电器</option>
-                    <option value="4">电脑</option>
-                    <option value="5">运动健身</option>
-                    <option value="6">衣物伞冒</option>
-                    <option value="7">图书教材</option>
-                    <option value="8">其他</option>
-                </c:if>
-                <c:if test="${requestScope.goodsInfo.goodsType == 2}">
-                    <option value="1">校园代步</option>
-                    <option value="2" selected="selected">电子设备</option>
-                    <option value="3">电器</option>
-                    <option value="4">电脑</option>
-                    <option value="5">运动健身</option>
-                    <option value="6">衣物伞冒</option>
-                    <option value="7">图书教材</option>
-                    <option value="8">其他</option>
-                </c:if>
-                <c:if test="${requestScope.goodsInfo.goodsType == 3}">
-                    <option value="1">校园代步</option>
-                    <option value="2">电子设备</option>
-                    <option value="3" selected="selected">电器</option>
-                    <option value="4">电脑</option>
-                    <option value="5">运动健身</option>
-                    <option value="6">衣物伞冒</option>
-                    <option value="7">图书教材</option>
-                    <option value="8">其他</option>
-                </c:if>
-                <c:if test="${requestScope.goodsInfo.goodsType == 4}">
-                    <option value="1">校园代步</option>
-                    <option value="2">电子设备</option>
-                    <option value="3">电器</option>
-                    <option value="4" selected="selected">电脑</option>
-                    <option value="5">运动健身</option>
-                    <option value="6">衣物伞冒</option>
-                    <option value="7">图书教材</option>
-                    <option value="8">其他</option>
-                </c:if>
-                <c:if test="${requestScope.goodsInfo.goodsType == 5}">
-                    <option value="1">校园代步</option>
-                    <option value="2">电子设备</option>
-                    <option value="3">电器</option>
-                    <option value="4">电脑</option>
-                    <option value="5" selected="selected">运动健身</option>
-                    <option value="6">衣物伞冒</option>
-                    <option value="7">图书教材</option>
-                    <option value="8">其他</option>
-                </c:if>
-                <c:if test="${requestScope.goodsInfo.goodsType == 6}">
-                    <option value="1">校园代步</option>
-                    <option value="2">电子设备</option>
-                    <option value="3">电器</option>
-                    <option value="4">电脑</option>
-                    <option value="5">运动健身</option>
-                    <option value="6" selected="selected">衣物伞冒</option>
-                    <option value="7">图书教材</option>
-                    <option value="8">其他</option>
-                </c:if>
-                <c:if test="${requestScope.goodsInfo.goodsType == 7}">
-                    <option value="1">校园代步</option>
-                    <option value="2">电子设备</option>
-                    <option value="3">电器</option>
-                    <option value="4">电脑</option>
-                    <option value="5">运动健身</option>
-                    <option value="6">衣物伞冒</option>
-                    <option value="7" selected="selected">图书教材</option>
-                    <option value="8">其他</option>
-                </c:if>
-                <c:if test="${requestScope.goodsInfo.goodsType == 8}">
-                    <option value="1">校园代步</option>
-                    <option value="2">电子设备</option>
-                    <option value="3">电器</option>
-                    <option value="4">电脑</option>
-                    <option value="5">运动健身</option>
-                    <option value="6">衣物伞冒</option>
-                    <option value="7">图书教材</option>
-                    <option value="8" selected="selected">其他</option>
-                </c:if>
+                <c:forEach items="${applicationScope.goodsTypeList}"  var="item">
+                    <c:choose>
+                        <c:when test="${requestScope.goodsInfo.goodsType == item.codeId}">
+                            <option value="${item.codeId}" selected="selected">${item.codeName}</option>
+                        </c:when>
+                        <c:otherwise>
+                            <option value="${item.codeId}">${item.codeName}</option>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
             </select>
         </div>
     </div>
@@ -168,6 +99,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="/js/modifyGoodsInfo.js"></script>
 </body>
+<script type="text/javascript" src="/js/modifyGoodsInfo.js"></script>
 </html>

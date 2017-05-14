@@ -179,10 +179,10 @@ public class GoodsDaoImpl implements IGoodsDao {
     /**
      * 根据输入的商品名称、选择的商品类型、商品的价格查询商品
      *
-     * @param goodsName
-     * @param goodsType
-     * @param minGoodsPrice
-     * @param maxGoodsPrice
+     * @param goodsName 商品名称
+     * @param goodsType 选择的商品类型
+     * @param minGoodsPrice 最低商品的价格
+     * @param maxGoodsPrice 最高商品价格
      * @return
      */
     @Override
@@ -201,7 +201,7 @@ public class GoodsDaoImpl implements IGoodsDao {
             criteria.add(Restrictions.ge("goodsPrice", minGoodsPrice));
         }
         if (maxGoodsPrice != null) {
-            criteria.add(Restrictions.lt("goodsPrice", maxGoodsPrice));
+            criteria.add(Restrictions.le("goodsPrice", maxGoodsPrice));
         }
         if (userId != null) {
             criteria.add(Restrictions.ne("userId", userId));

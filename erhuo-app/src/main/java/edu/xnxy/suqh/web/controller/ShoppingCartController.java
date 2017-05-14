@@ -58,7 +58,7 @@ public class ShoppingCartController {
     }
 
     /**
-     * 商品加入购物车
+     * Description 商品加入购物车
      *
      * @param shoppingCartInfo
      * @return
